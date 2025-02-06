@@ -1,8 +1,70 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "ThermoComfort";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<head>
+<link rel="stylesheet" href="~/css/styles.css">
+</head>
+<header>
+    <div class="container">
+        <div class="logo">ThermoComfort</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>Welcome to ThermoComfort</h1>
+        <p>Your Comfort, Our Priority</p>
+        <a href="#" class="btn">Shop Now</a>
+    </div>
+</section>
+
+<section class="featured-products">
+    <div class="container">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="https://via.placeholder.com/300x200" alt="Product 1">
+                <div class="product-info">
+                    <h3>Product 1</h3>
+                    <p>High-quality product for your comfort.</p>
+                    <p class="price">$99.99</p>
+                </div>
+            </div>
+            <!-- Add more product cards -->
+        </div>
+    </div>
+</section>
+
+<section class="services">
+    <div class="container">
+        <h2>Our Services</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <i class="fas fa-shipping-fast"></i>
+                <h3>Fast Shipping</h3>
+                <p>Get your products delivered quickly.</p>
+            </div>
+            <!-- Add more service cards -->
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2023 ThermoComfort. All rights reserved.</p>
+    </div>
+</footer>

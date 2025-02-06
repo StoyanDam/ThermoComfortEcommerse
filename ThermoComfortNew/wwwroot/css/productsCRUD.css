@@ -1,0 +1,26 @@
+﻿.description-container {
+    position: relative;
+    max-width: 300px;
+}
+
+.description-text {
+    max-height: 4.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.expanded {
+    max-height: none !important;
+    -webkit-line-clamp: unset !important;
+}
+
+.toggle-button {
+    background: none;
+    border: none;
+    color: blue;
+    cursor: pointer;
+    padding: 0;
+}
