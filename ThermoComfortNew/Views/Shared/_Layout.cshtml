@@ -1,15 +1,26 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+@*     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ThermoComfortNew</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 @*     <link rel="stylesheet" href="~/ThermoComfortNew.styles.css" asp-append-version="true" /> *@
-    <link rel="stylesheet" href="~/css/productsCRUD.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/contactsPage.css" asp-append-version="true" />
-  @*   <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" /> *@
+  @*   <link rel="stylesheet" href="~/css/productsCRUD.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/contactsPage.css" asp-append-version="true" /> *@
+  @*   <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" /> *@ 
+  <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - ThermoComfortNew</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/productsCRUD.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/contactsPage.css" asp-append-version="true" />
+        <!-- Add Font Awesome for the cart icon -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    </head>
 </head>
 <body>
     <header>
@@ -28,14 +39,13 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contacts</a>
                         </li>
-                      
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="All">All Products</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Index">Orders</a>
                         </li>
-                        
+
                         @if (this.User.IsInRole("Admin"))
                         {
                             <li class="dropdown dropdown-slide">
@@ -52,6 +62,12 @@
                             </li>
                         }
                     </ul>
+
+                    <a class="nav-link text-dark" asp-controller="Cart" asp-action="Index">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span class="badge bg-danger" id="cartItemCount">0</span>
+                    </a>
+
                     <partial name="_LoginPartial" />
                 </div>
             </div>
@@ -73,4 +89,21 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
+<script>
+        // Function to update the cart item count
+    function updateCartItemCount() {
+        fetch('/Cart/GetCartItemCount') // Replace with your endpoint to get the cart item count
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('cartItemCount').textContent = data.count;
+            })
+            .catch(error => console.error('Error fetching cart item count:', error));
+    }
+
+    // Call the function when the page loads
+    document.addEventListener('DOMContentLoaded', updateCartItemCount);
+</script>
+
 </html>
+

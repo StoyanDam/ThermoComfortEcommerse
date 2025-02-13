@@ -46,7 +46,7 @@
 
         /* Specific column width adjustments */
         .table th:nth-child(1), .table td:nth-child(1) {
-            width: 15%;
+            width: 20%;
         }
         /* Product Name */
         .table th:nth-child(2), .table td:nth-child(2) {

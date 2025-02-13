@@ -11,208 +11,7 @@ namespace ThermoComfortNew.Controllers
 {
     public class ApplicationUsersController : Controller
     {
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
-        //private readonly UserManager<ApplicationUser> _userManager;
-        //private readonly ApplicationDbContext _data;
-
-        //public ApplicationUsersController(UserManager<ApplicationUser> userManager, ApplicationDbContext data)
-        //{
-        //    this._userManager = userManager;
-        //    this._data = data;
-        //}
-
-        //[HttpGet]
-        //[Authorize]
-        //public async Task<IActionResult> Details()
-        //{
-        //    var user = await this._userManager.GetUserAsync(User);
-
-        //    var model = new ApplicationUser()
-        //    {
-        //        Email = user.Email,
-        //        Id = user.Id,
-        //        FirstName = user.FirstName,
-        //        LastName = user.LastName
-        //    };
-
-        //    return this.View(model);
-        //}
-
-        //[HttpGet]
-        //[Authorize(Roles = "Admin")]
-        //public IActionResult All()
-        //{
-        //    var users = this._data.Users
-        //        .Select(u => new ApplicationUser()
-        //        {
-        //            Id = u.Id,
-        //            FirstName = u.FirstName,
-        //            LastName = u.LastName,
-        //            Email = u.Email
-        //        })
-        //        .ToList();
-
-        //    return View(users);
-        //}
-
-        //[HttpGet]
-        //[Authorize]
-        //public IActionResult Edit(string id)
-        //{
-        //    if (!this.User.IsInRole("Admin") || id == null)
-        //    {
-        //        id = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        //    }
-
-        //    var user = this._data.Users
-        //        .Where(u => u.Id == id)
-        //        .Select(u => new ApplicationUser()
-        //        {
-        //            Id = u.Id,
-        //            FirstName = u.FirstName,
-        //            LastName = u.LastName,
-        //            Email = u.Email
-        //        })
-        //        .Single();
-
-        //    return View(user);
-        //}
-
-        //[HttpPost]
-        //[Authorize]
-        //public IActionResult Update(string id, ApplicationUser input)
-        //{
-        //    if (!this.User.IsInRole("Admin"))
-        //    {
-        //        id = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        //    }
-
-        //    var user = this._data.Users
-        //        .FirstOrDefault(u => u.Id == id);
-
-        //    user.FirstName = input.FirstName;
-        //    user.LastName = input.LastName;
-        //    user.Email = input.Email;
-        //    user.NormalizedEmail = input.Email.ToUpper();
-        //    user.UserName = input.Email;
-        //    user.UserName = input.Email.ToUpper();
-
-        //    this._data.SaveChanges();
-
-        //    return RedirectToAction("Index", "Home");
-        //}
-
-        //[HttpPost]
-        //[Authorize(Roles = "Admin")]
-        //public IActionResult Delete(string id)
-        //{
-        //    foreach (var review in this._data.Reviews.Where(r => r.UserId == id))
-        //    {
-        //        this._data.Reviews.Remove(review);
-        //    }
-
-        //    foreach (var order in this._data.Orders.Where(o => o.ApplicationUserId == id))
-        //    {
-        //        foreach (var orderProduct in this._data.OrderProducts.Where(op => op.OrderId == order.Id))
-        //        {
-        //            this._data.OrderProducts.Remove(orderProduct);
-        //        }
-
-        //        this._data.Orders.Remove(order);
-        //    }
-
-        //    var user = this._data.Users
-        //        .FirstOrDefault(u => u.Id == id);
-
-        //    this._data.Users.Remove(user);
-        //    this._data.SaveChanges();
-
-        //    return RedirectToAction("Index", "Home");
-        //}
-
-        //[HttpGet]
-        //[Authorize(Roles = "Admin")]
-        //public IActionResult Add()
-        //    => View();
-
-        //[HttpPost]
-        //[Authorize(Roles = "Admin")]
-        //public async Task<IActionResult> Create(ApplicationUser input)
-        //{
-        //    var user = new ApplicationUser
-        //    {
-        //        UserName = input.Email,
-        //        Email = input.Email,
-        //        FirstName = input.FirstName,
-        //        LastName = input.LastName
-        //    };
-
-        //    await _userManager.CreateAsync(user, input.Password);
-
-        //    return RedirectToAction("All");
-        //}
-
-        //[HttpGet]
-        //[Authorize]
-        //public async Task<IActionResult> Orders()
-        //{
-        //    var orders = await this._data.Orders
-        //        .Where(o => o.ApplicationUserId == this.User.FindFirst(ClaimTypes.NameIdentifier).Value)
-        //        .Select(o => new Order()
-        //        {
-        //            Id = o.Id,
-        //            TotalPrice = o.TotalPrice,
-        //            PhoneNumber = o.PhoneNumber,
-        //            ApplicationUserId = o.ApplicationUserId,
-        //            ApplicationUser = this._data.Users
-        //                .Where(u => u.Id == o.ApplicationUserId)
-        //                .Select(u => new ApplicationUser()
-        //                {
-        //                    Id = u.Id,
-        //                    FirstName = u.FirstName,
-        //                    LastName = u.LastName,
-        //                    Email = u.Email
-        //                })
-        //                .SingleOrDefault(),
-        //            OrderProducts = new List<Product>()
-        //        })
-        //        .ToListAsync();
-
-        //    foreach (var order in orders)
-        //    {
-        //        var orderProducts = await this._data.OrderProducts
-        //            .Where(op => op.OrderId == order.Id)
-        //            .ToListAsync();
-
-        //        foreach (var orderProduct in orderProducts)
-        //        {
-        //            var product = await this._data.Products
-        //                .Where(p => p.ProductId == orderProduct.ProductId)
-        //                .Select(product => new Product()
-        //                {
-        //                    Brand = product.Brand,
-        //                    Description = product.Description,
-        //                    ProductId = product.ProductId,
-        //                    ImageUrl = product.ImageUrl,
-        //                    ProductName = product.ProductName,
-        //                    Price = product.Price,
-        //                    Characteristics = product.Characteristics,
-        //                    Availability = product.Availability,
-
-
-        //                })
-        //                .FirstOrDefaultAsync();
-
-        //            order.Products.Add(product);
-        //        }
-        //    }
-
-        //    return this.View(orders);
-        //}
-
+     
         private readonly ApplicationDbContext _context;
 
         public ApplicationUsersController(ApplicationDbContext context)
@@ -266,12 +65,13 @@ namespace ThermoComfortNew.Controllers
             {
                 _context.Add(user);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(All));
             }
             return View(user);
         }
 
         // GET: ApplicationUsers/Edit/5
+        [HttpGet]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
         {
@@ -288,10 +88,8 @@ namespace ThermoComfortNew.Controllers
             return View(user);
         }
 
-        // POST: ApplicationUsers/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id, [Bind("Id,FirstName,LastName,Email,PhoneNumber")] ApplicationUser user)
         {
             if (id != user.Id)
@@ -303,7 +101,21 @@ namespace ThermoComfortNew.Controllers
             {
                 try
                 {
-                    _context.Update(user);
+                    // Check if the user exists in the database
+                    var existingUser = await _context.Users.FindAsync(id);
+                    if (existingUser == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Update the existing user's properties
+                    existingUser.FirstName = user.FirstName;
+                    existingUser.LastName = user.LastName;
+                    existingUser.Email = user.Email;
+                    existingUser.PhoneNumber = user.PhoneNumber;
+
+                    // Save changes
+                    _context.Update(existingUser);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -317,12 +129,13 @@ namespace ThermoComfortNew.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(All));
             }
             return View(user);
         }
 
         // GET: ApplicationUsers/Delete/5
+        [HttpGet]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
         {
@@ -345,6 +158,7 @@ namespace ThermoComfortNew.Controllers
         // POST: ApplicationUsers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var user = await _context.Users.FindAsync(id);
@@ -355,7 +169,7 @@ namespace ThermoComfortNew.Controllers
 
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(All));
         }
 
         private bool UserExists(string id)

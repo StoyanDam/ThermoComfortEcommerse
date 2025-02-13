@@ -1,0 +1,11 @@
+﻿@model ThermoComfortNew.Domain.Cart
+
+<h2>Remove from Cart</h2>
+
+<p>Are you sure you want to remove this item from your cart?</p>
+
+<form asp-action="RemoveFromCart" method="post">
+    <input type="hidden" name="productId" value="@Model.ProductId" />
+    <button type="submit" class="btn btn-danger">Remove</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

@@ -61,3 +61,15 @@ body {
     .dropdown-menu a:hover {
         background-color: #f8f9fa; /* Light background on hover */
     }
+
+/* Style for the shopping cart button */
+.nav-link .fa-shopping-cart {
+    font-size: 1.2rem;
+    margin-right: 5px;
+}
+
+/* Style for the cart item count badge */
+.badge.bg-danger {
+    font-size: 0.8rem;
+    margin-left: 5px;
+}

@@ -143,9 +143,9 @@
                 <tr>
                     <td>
                         <div class="action-buttons">
-                            <a asp-action="Edit" asp-route-id="@item.ProductId" class="edit-btn">Edit</a>
-                            <a asp-action="Details" asp-route-id="@item.ProductId" class="details-btn">Details</a>
-                            <a asp-action="Delete" asp-route-id="@item.ProductId" class="delete-btn">Delete</a>
+                            <a asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-secondary">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-success">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-danger">Delete</a>
                         </div>
                     </td>
                     <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
