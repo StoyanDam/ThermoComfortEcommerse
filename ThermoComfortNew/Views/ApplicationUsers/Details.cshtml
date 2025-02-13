@@ -1,0 +1,31 @@
+﻿@model ThermoComfortNew.Domain.ApplicationUser
+
+@{
+    ViewData["Title"] = "Детайли за потребител";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">Пълно име</dt>
+        <dd class="col-sm-10">@Model.FullName</dd>
+
+        <dt class="col-sm-2">Имейл</dt>
+        <dd class="col-sm-10">@Model.Email</dd>
+
+        <dt class="col-sm-2">Телефон</dt>
+        <dd class="col-sm-10">@Model.PhoneNumber</dd>
+
+        <dt class="col-sm-2">Брой поръчки</dt>
+        <dd class="col-sm-10">@Model.Orders.Count</dd>
+
+        <dt class="col-sm-2">Брой ревюта</dt>
+        <dd class="col-sm-10">@Model.Reviews.Count</dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Редактирай</a>
+    <a asp-action="All" class="btn btn-secondary">Назад към списъка</a>
+</div>

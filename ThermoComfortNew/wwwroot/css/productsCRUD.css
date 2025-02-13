@@ -24,3 +24,119 @@
     cursor: pointer;
     padding: 0;
 }
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Prevents horizontal scrolling */
+}
+
+.table {
+    width: 100%;
+    table-layout: fixed; /* Ensures columns adjust properly */
+    border-collapse: collapse;
+}
+
+    .table th, .table td {
+        padding: 8px;
+        text-align: left;
+        word-wrap: break-word;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+        /* Specific column width adjustments */
+        .table th:nth-child(1), .table td:nth-child(1) {
+            width: 15%;
+        }
+        /* Product Name */
+        .table th:nth-child(2), .table td:nth-child(2) {
+            width: 25%;
+        }
+        /* Description */
+        .table th:nth-child(3), .table td:nth-child(3) {
+            width: 10%;
+        }
+        /* Image */
+        .table th:nth-child(4), .table td:nth-child(4) {
+            width: 10%;
+        }
+        /* Price */
+        .table th:nth-child(5), .table td:nth-child(5) {
+            width: 10%;
+        }
+        /* Availability */
+        .table th:nth-child(6), .table td:nth-child(6) {
+            width: 10%;
+        }
+        /* Characteristics */
+        .table th:nth-child(7), .table td:nth-child(7) {
+            width: 10%;
+        }
+        /* Brand */
+        .table th:nth-child(8), .table td:nth-child(8) {
+            width: 10%;
+        }
+        /* Created On */
+        .table th:nth-child(9), .table td:nth-child(9) {
+            width: 5%;
+        }
+        /* IsDeleted */
+        .table th:nth-child(10), .table td:nth-child(10) {
+            width: 10%;
+        }
+/* Category */
+
+/* Allow multi-line wrapping for descriptions */
+.description-container {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.description-text {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+    .description-text.expanded {
+        white-space: normal;
+    }
+
+.toggle-button {
+    background: none;
+    border: none;
+    color: blue;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+/* Styling for CRUD buttons */
+.action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+    .action-buttons a {
+        padding: 4px 8px;
+        text-decoration: none;
+        color: white;
+        font-size: 12px;
+        border-radius: 4px;
+    }
+
+.edit-btn {
+    background-color: #4CAF50;
+}
+/* Green */
+.details-btn {
+    background-color: #2196F3;
+}
+/* Blue */
+.delete-btn {
+    background-color: #f44336;
+}
+/* Red */

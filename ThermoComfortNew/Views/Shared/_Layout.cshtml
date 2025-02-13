@@ -6,10 +6,10 @@
     <title>@ViewData["Title"] - ThermoComfortNew</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ThermoComfortNew.styles.css" asp-append-version="true" />
+@*     <link rel="stylesheet" href="~/ThermoComfortNew.styles.css" asp-append-version="true" /> *@
     <link rel="stylesheet" href="~/css/productsCRUD.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/contactsPage.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+  @*   <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" /> *@
 </head>
 <body>
     <header>
@@ -28,9 +28,29 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contacts</a>
                         </li>
+                      
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="All">All Products</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Index">Orders</a>
+                        </li>
+                        
+                        @if (this.User.IsInRole("Admin"))
+                        {
+                            <li class="dropdown dropdown-slide">
+                                <a href="#" class="nav-link text-dark" data-toggle="dropdown" data-hover="dropdown" data-delay="350" role="button" aria-haspopup="true" aria-expanded="false">Администрация <span class="tf-ion-ios-arrow-down"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-controller="Home" asp-action="Messages">Съобщения</a></li>
+                                    <li><a asp-controller="Products" asp-action="Index">Промени продукт</a></li>
+                                    <li><a asp-controller="Products" asp-action="All">Продукти</a></li>
+                                    <li><a asp-controller="ApplicationUsers" asp-action="Create">Добави потребител</a></li>
+                                    <li><a asp-controller="ApplicationUsers" asp-action="All">Потребители</a></li>
+                                    <li><a asp-controller="Categories" asp-action="Index">Категории</a></li>
+                                    <li><a asp-controller="Orders" asp-action="All">Поръчки</a></li>
+                                </ul>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

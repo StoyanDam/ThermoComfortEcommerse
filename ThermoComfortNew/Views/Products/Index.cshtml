@@ -1,4 +1,9 @@
-﻿@model IEnumerable<ThermoComfort.Data.Models.Product>
+﻿@* 
+<head>
+    <link rel="stylesheet" href="~/css/productsCrud.css" asp-append-version="true" />
+
+</head>
+@model IEnumerable<ThermoComfort.Data.Models.Product>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,6 +14,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<div class="table-container">
 <table class="table">
     <thead>
         <tr>
@@ -93,7 +99,7 @@
         }
     </tbody>
 </table>
-
+</div>
 <script>
     function toggleDescription(id) {
         var desc = document.getElementById('desc-' + id);
@@ -108,3 +114,77 @@
 </script>
 
 
+ *@
+ @model IEnumerable<ThermoComfort.Data.Models.Product>
+<head>
+    <link rel="stylesheet" href="~/css/productsCrud.css" asp-append-version="true" />
+</head>
+<a asp-action="Create">Create New</a>
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Actions</th> <!-- Moved CRUD actions here -->
+                <th>@Html.DisplayNameFor(model => model.ProductName)</th>
+                <th>@Html.DisplayNameFor(model => model.Description)</th>
+                <th>@Html.DisplayNameFor(model => model.ImageUrl)</th>
+                <th>@Html.DisplayNameFor(model => model.Price)</th>
+                <th>@Html.DisplayNameFor(model => model.Availability)</th>
+                <th>@Html.DisplayNameFor(model => model.Characteristics)</th>
+                <th>@Html.DisplayNameFor(model => model.Brand)</th>
+                <th>@Html.DisplayNameFor(model => model.CreatedOn)</th>
+                <th>@Html.DisplayNameFor(model => model.IsDeleted)</th>
+                <th>@Html.DisplayNameFor(model => model.Category)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="action-buttons">
+                            <a asp-action="Edit" asp-route-id="@item.ProductId" class="edit-btn">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.ProductId" class="details-btn">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.ProductId" class="delete-btn">Delete</a>
+                        </div>
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                    <td>
+                        <div class="description-container">
+                            <span class="description-text" id="desc-@item.ProductId">
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </span>
+                            <button class="toggle-button" onclick="toggleDescription('@item.ProductId')">Read more</button>
+                        </div>
+                    </td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.ImageUrl))
+                        {
+                            <img src="@item.ImageUrl" alt="Product Image" style="max-width: 50px; max-height: 50px;">
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Availability)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Characteristics)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Brand)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CreatedOn)</td>
+                    <td>@Html.DisplayFor(modelItem => item.IsDeleted)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Category.CategoryName)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function toggleDescription(id) {
+        var desc = document.getElementById('desc-' + id);
+        if (desc.classList.contains('expanded')) {
+            desc.classList.remove('expanded');
+            event.target.innerText = 'Read more';
+        } else {
+            desc.classList.add('expanded');
+            event.target.innerText = 'Read less';
+        }
+    }
+</script>
