@@ -1,99 +1,313 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿//using Microsoft.AspNetCore.Mvc;
+//using Microsoft.AspNetCore.Authorization;
+//using Microsoft.AspNetCore.Identity;
+//using ThermoComfortNew.Domain;
+//using Microsoft.EntityFrameworkCore;
+//using ThermoComfort.Data.Models;
+//using ThermoComfortNew.Data;
+//using ThermoComfortNew.Models;
+
+//[Authorize]
+//public class CartController : Controller
+//{
+//    private readonly ShoppingCartService _cartService;
+//    private readonly UserManager<ApplicationUser> _userManager;
+//    private readonly ApplicationDbContext _context;
+
+//    public CartController(ShoppingCartService cartService, UserManager<ApplicationUser> userManager, ApplicationDbContext context)
+//    {
+//        _cartService = cartService;
+//        _userManager = userManager;
+//        _context = context;
+//    }
+
+//    private async Task<ApplicationUser> GetCurrentUserAsync()
+//    {
+//        return await _userManager.GetUserAsync(User);
+//    }
+
+//    public async Task<IActionResult> Index()
+//    {
+//        var user = await GetCurrentUserAsync();
+//        var cartItems = await _cartService.GetCartItemsAsync(user);
+//        return View(cartItems);
+//    }
+
+//    public async Task<IActionResult> AddToCart(int productId, int quantity = 1)
+//    {
+//        var user = await GetCurrentUserAsync();
+//        await _cartService.AddToCartAsync(user, productId, quantity);
+//        return RedirectToAction("Index");
+//    }
+
+//    public async Task<IActionResult> RemoveFromCart(int productId)
+//    {
+//        var user = await GetCurrentUserAsync();
+//        await _cartService.RemoveFromCartAsync(user, productId);
+//        return RedirectToAction("Index");
+//    }
+
+//    public async Task<IActionResult> ClearCart()
+//    {
+//        var user = await GetCurrentUserAsync();
+//        await _cartService.ClearCartAsync(user);
+//        return RedirectToAction("Index");
+//    }
+
+
+
+
+//    //[HttpPost]
+//    //public async Task<IActionResult> Checkout(CheckoutViewModel model)
+//    //{
+//    //    var user = await _userManager.GetUserAsync(User);
+//    //    if (user == null) return RedirectToAction("Index", "Home");
+
+//    //    if (!ModelState.IsValid)
+//    //    {
+//    //        var cartItem = await _cartService.GetCartItemsAsync(user);
+//    //        model.CartItems = cartItem;
+//    //        model.TotalAmount = cartItem.Sum(i => i.Quantity * i.Product.Price);
+//    //        return View(model);
+//    //    }
+
+//    //    var cartItems = await _cartService.GetCartItemsAsync(user);
+//    //    if (!cartItems.Any())
+//    //    {
+//    //        TempData["Message"] = "Your cart is empty.";
+//    //        return RedirectToAction("Index");
+//    //    }
+
+//    //    var order = new Order
+//    //    {
+//    //        ApplicationUserId = user.Id,
+//    //        OrderDate = DateTime.Now,
+//    //        Address = model.Address, // Save the address
+//    //        TotalPrice = cartItems.Sum(i => i.Quantity * i.Product.Price),
+//    //        OrderProducts = cartItems.Select(i => new OrderProduct
+//    //        {
+//    //            ProductId = i.ProductId,
+//    //            Quantity = i.Quantity
+//    //        }).ToList()
+//    //    };
+
+//    //    _context.Orders.Add(order);
+//    //    await _context.SaveChangesAsync();
+
+//    //    await _cartService.ClearCartAsync(user);
+
+//    //    return RedirectToAction("OrderConfirmation", new { id = order.Id });
+//    //}
+
+//    [HttpPost]
+//    public async Task<IActionResult> Checkout(CheckoutViewModel model)
+//    {
+//        var user = await _userManager.GetUserAsync(User);
+//        if (user == null) return RedirectToAction("Index", "Home");
+
+//        if (!ModelState.IsValid)
+//        {
+//            var cartItem = await _cartService.GetCartItemsAsync(user);
+//            model.CartItems = cartItem;
+//            model.TotalAmount = cartItem.Sum(i => i.Quantity * i.Product.Price);
+//            return View(model);
+//        }
+
+//        var cartItems = await _cartService.GetCartItemsAsync(user);
+//        if (!cartItems.Any())
+//        {
+//            TempData["Message"] = "Your cart is empty.";
+//            return RedirectToAction("Index");
+//        }
+
+//        var order = new Order
+//        {
+//            ApplicationUserId = user.Id,
+//            OrderDate = DateTime.UtcNow,
+//            Address = model.Address, // Save the address from the form
+//            TotalPrice = cartItems.Sum(i => i.Quantity * i.Product.Price),
+//            OrderProducts = cartItems.Select(i => new OrderProduct
+//            {
+//                ProductId = i.ProductId,
+//                Quantity = i.Quantity
+//            }).ToList()
+//        };
+
+//        _context.Orders.Add(order);
+//        await _context.SaveChangesAsync();
+
+//        await _cartService.ClearCartAsync(user);
+
+//        // Redirect to the Orders page after placing the order
+//        return RedirectToAction("Index", "Orders");
+//    }
+//    [HttpGet]  // This loads the checkout page
+//    public async Task<IActionResult> Checkout()
+//    {
+//        var user = await _userManager.GetUserAsync(User);
+//        if (user == null) return RedirectToAction("Index", "Home");
+
+//        var cartItems = await _cartService.GetCartItemsAsync(user);
+//        if (!cartItems.Any())
+//        {
+//            TempData["Message"] = "Your cart is empty.";
+//            return RedirectToAction("Index");
+//        }
+
+//        var viewModel = new CheckoutViewModel
+//        {
+//            CartItems = cartItems,
+//            TotalAmount = cartItems.Sum(i => i.Quantity * i.Product.Price)
+//        };
+
+//        return View(viewModel);
+//    }
+
+//    public async Task<IActionResult> OrderConfirmation(int id)
+//    {
+//        var order = await _context.Orders
+//            .Include(o => o.OrderProducts)
+//            .ThenInclude(op => op.Product)
+//            .FirstOrDefaultAsync(o => o.Id == id);
+
+//        if (order == null) return NotFound();
+
+//        return View(order);
+//    }
+
+
+
+//}
+
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Threading.Tasks;
 using ThermoComfort.Data.Models;
 using ThermoComfortNew.Data;
 using ThermoComfortNew.Domain;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using ThermoComfortNew.Domain;
 using ThermoComfortNew.Domain.ThermoComfortNew.Domain;
+using ThermoComfortNew.Models;
 
-namespace ThermoComfortNew.Controllers
+public class CartController : Controller
 {
-    public class CartController : Controller
+    private readonly ApplicationDbContext _context;
+    private readonly UserManager<ApplicationUser> _userManager;
+
+    public CartController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
     {
-        private readonly CartService _cartService;
-        private readonly ApplicationDbContext _context;
-
-        public CartController(CartService cartService, ApplicationDbContext context)
-        {
-            _cartService = cartService;
-            _context = context;
-        }
-
-
-
-        [HttpPost]
-        public IActionResult AddProductToCart(int productId, int quantity = 1)
-        {
-            var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
-            if (product == null)
-            {
-                return NotFound(); // Handle the case where the product is not found
-            }
-
-            _cartService.AddToCart(product, quantity);
-            return RedirectToAction("Index");
-        }
-        public IActionResult Index()
-        {
-            var cartItems = _cartService.GetCartItems();
-            return View(cartItems);
-        }
-        //public IActionResult Index()
-        //{
-        //    var cartItems = _cartService.GetCartItems();
-        //    return View(cartItems);
-        //}
-
-
-        //[HttpPost]
-        //[HttpPost]
-        //public IActionResult AddToCart(int productId, int quantity = 1)
-        //{
-        //    var product = _context.Products.FirstOrDefault(p => p.ProductId == productId);
-        //    if (product == null)
-        //    {
-        //        return NotFound(); // Handle the case where the product is not found
-        //    }
-
-        //    _cartService.AddToCart(product, quantity);
-        //    return RedirectToAction("Index");
-        //}
-        //[HttpPost]
-        //public IActionResult AddToCart(Product product, int quantity)
-        //{
-        //    _cartService.AddToCart(product, quantity);
-        //    return RedirectToAction("Index");
-        //}
-
-        [HttpPost]
-        public IActionResult RemoveFromCart(int productId)
-        {
-            _cartService.RemoveFromCart(productId);
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public IActionResult UpdateQuantity(int productId, int quantity)
-        {
-            _cartService.UpdateQuantity(productId, quantity);
-            return RedirectToAction("Index");
-        }
-
-        public IActionResult Checkout()
-        {
-            // Implement checkout logic here
-            _cartService.ClearCart();
-            return RedirectToAction("Index", "Home");
-        }
-
-        //За брой на елементите в количката свързан с js.
-        public IActionResult GetCartItemCount()
-        {
-            var cartItems = _cartService.GetCartItems();
-            var count = cartItems.Sum(item => item.Quantity);
-            return Json(new { count });
-        }
+        _context = context;
+        _userManager = userManager;
     }
+
+    [Authorize]
+    public async Task<IActionResult> Index()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        var cartItems = await _context.ShoppingCartItems
+            .Include(c => c.Product)
+            .Where(c => c.ApplicationUserId == user.Id)
+            .ToListAsync();
+
+        return View(cartItems);
+    }
+
+    [HttpPost]
+    [Authorize]
+    public async Task<IActionResult> AddToCart(int productId, int quantity = 1)
+    {
+        var user = await _userManager.GetUserAsync(User);
+        var cartItem = await _context.ShoppingCartItems
+            .FirstOrDefaultAsync(c => c.ApplicationUserId == user.Id && c.ProductId == productId);
+
+        if (cartItem == null)
+        {
+            _context.ShoppingCartItems.Add(new ShoppingCartItem
+            {
+                ApplicationUserId = user.Id,
+                ProductId = productId,
+                Quantity = quantity
+            });
+        }
+        else
+        {
+            cartItem.Quantity += quantity;
+        }
+
+        await _context.SaveChangesAsync();
+        return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    [Authorize]
+    public async Task<IActionResult> RemoveFromCart(int id)
+    {
+        var cartItem = await _context.ShoppingCartItems.FindAsync(id);
+        if (cartItem != null)
+        {
+            _context.ShoppingCartItems.Remove(cartItem);
+            await _context.SaveChangesAsync();
+        }
+        return RedirectToAction("Index");
+    }
+
+    [Authorize]
+    public async Task<IActionResult> Checkout()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        var cartItems = await _context.ShoppingCartItems
+            .Where(c => c.ApplicationUserId == user.Id)
+            .Include(c => c.Product)
+            .ToListAsync();
+
+        if (!cartItems.Any()) return RedirectToAction("Index");
+
+        var totalPrice = cartItems.Sum(c => c.Product.Price * c.Quantity);
+
+        var model = new CheckoutViewModel
+        {
+            CartItems = cartItems,
+            TotalPrice = totalPrice
+        };
+
+        return View(model);
+    }
+
+    [HttpPost]
+    [Authorize]
+    public async Task<IActionResult> Checkout(string address, string phoneNumber)
+    {
+        var user = await _userManager.GetUserAsync(User);
+        var cartItems = await _context.ShoppingCartItems
+            .Where(c => c.ApplicationUserId == user.Id)
+            .Include(c => c.Product)
+            .ToListAsync();
+
+        if (!cartItems.Any()) return RedirectToAction("Index");
+
+        var order = new Order
+        {
+            ApplicationUserId = user.Id,
+            Address = address,
+            PhoneNumber = phoneNumber,
+            OrderDate = DateTime.Now,
+            TotalPrice = cartItems.Sum(c => c.Product.Price * c.Quantity),
+            OrderProducts = cartItems.Select(c => new OrderProduct
+            {
+                ProductId = c.ProductId,
+                Quantity = c.Quantity
+            }).ToList()
+        };
+
+        _context.Orders.Add(order);
+        _context.ShoppingCartItems.RemoveRange(cartItems);
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction("Index", "Orders");
+    }
+
 }
+
 

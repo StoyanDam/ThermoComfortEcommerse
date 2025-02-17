@@ -1,91 +1,34 @@
-﻿@* @model List<ThermoComfortNew.Domain.Cart>
+﻿@model IEnumerable<ThermoComfortNew.Domain.ThermoComfortNew.Domain.ShoppingCartItem>
 
 <h2>Shopping Cart</h2>
 
-@if (Model.Any())
-{
-    <table class="table">
-        <thead>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-                <th></th>
+                <td>@item.Product.ProductName</td>
+                <td>@item.Product.Price</td>
+                <td>@item.Quantity</td>
+                <td>@(item.Product.Price * item.Quantity)</td>
+                <td>
+                    <form asp-action="RemoveFromCart" method="post">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <button type="submit" class="btn btn-danger">Remove</button>
+                    </form>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.ProductId</td> <!-- Replace with product name if available -->
-                    <td>
-                        <form asp-action="UpdateQuantity" method="post">
-                            <input type="hidden" name="productId" value="@item.ProductId" />
-                            <input type="number" name="quantity" value="@item.Quantity" min="1" />
-                            <button type="submit" class="btn btn-primary">Update</button>
-                        </form>
-                    </td>
-                    <td>@item.Price</td> <!-- Replace with actual product price -->
-                    <td>@(item.Quantity * item.Price)</td>
-                    <td>
-                        <form asp-action="RemoveFromCart" method="post">
-                            <input type="hidden" name="productId" value="@item.ProductId" />
-                            <button type="submit" class="btn btn-danger">Remove</button>
-                        </form>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
 
-    <div class="text-right">
-        <h4>Total: @Model.Sum(item => item.Quantity * item.Price)</h4>
-        <a asp-action="Checkout" class="btn btn-success">Checkout</a>
-    </div>
-}
-else
-{
-    <p>Your shopping cart is empty.</p>
-    <a asp-controller="Products" asp-action="All" class="btn btn-primary">Continue Shopping</a>
-} *@
-
-@model List<ThermoComfortNew.Domain.Cart>
-
-<h2>Shopping Cart</h2>
-
-@if (Model.Any())
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.ProductId</td>
-                    <td>@item.Quantity</td>
-                    <td>@item.Price</td>
-                    <td>@(item.Quantity * item.Price)</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-
-    <div class="text-right">
-        <h4>Total: @Model.Sum(item => item.Quantity * item.Price)</h4>
-    </div>
-
-    <a asp-action="Checkout" class="btn btn-success">Checkout</a>
-}
-else
-{
-    <p>Your shopping cart is empty.</p>
-    <a asp-controller="Products" asp-action="All" class="btn btn-primary">Continue Shopping</a>
-}
+<a asp-action="Checkout" class="btn btn-success">Proceed to Checkout</a>

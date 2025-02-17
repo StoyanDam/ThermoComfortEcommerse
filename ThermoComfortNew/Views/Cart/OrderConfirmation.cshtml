@@ -1,15 +1,17 @@
 ﻿@model ThermoComfort.Data.Models.Order
 
 <h2>Order Confirmation</h2>
+<p>Thank you for your order!</p>
+<p><strong>Order Number:</strong> @Model.Id</p>
+<p><strong>Shipping Address:</strong> @Model.Address</p>
+<p><strong>Total Amount:</strong> @Model.TotalPrice.ToString("C")</p>
 
-<p>Thank you for your order! Your order has been placed successfully.</p>
-
-<h4>Order Details</h4>
+<h4>Ordered Items</h4>
 <ul>
-    <li><strong>Order ID:</strong> @Model.Id</li>
-    <li><strong>Order Date:</strong> @Model.OrderDate.ToString("g")</li>
-    <li><strong>Delivery Date:</strong> @Model.DeliveryDate.ToString("g")</li>
-    <li><strong>Total Price:</strong> @Model.TotalPrice</li>
+    @foreach (var item in Model.OrderProducts)
+    {
+        <li>@item.Product.ProductName - @item.Quantity x @item.Product.Price.ToString("C")</li>
+    }
 </ul>
 
-<a asp-controller="Home" asp-action="Index" class="btn btn-primary">Return to Home</a>
+<a asp-action="Index" asp-controller="Home" class="btn btn-primary">Continue Shopping</a>

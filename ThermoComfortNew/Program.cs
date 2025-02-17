@@ -124,7 +124,7 @@ builder.Services.AddSession(); // Enable session functionality
 builder.Services.AddHttpContextAccessor(); // Enable access to HttpContext
 
 // Register CartService
-builder.Services.AddScoped<CartService>();
+//builder.Services.AddScoped<ShoppingCartService>();
 
 // Register other services (if needed)
 // builder.Services.AddScoped<ProductService>();

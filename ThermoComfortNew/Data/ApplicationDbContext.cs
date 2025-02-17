@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ThermoComfort.Data.Models;
 using ThermoComfortNew.Domain;
+using ThermoComfortNew.Domain.ThermoComfortNew.Domain;
 
 namespace ThermoComfortNew.Data
 {
@@ -19,9 +20,18 @@ namespace ThermoComfortNew.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+           
+
+
+
+
+
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Category>().HasData(

@@ -49,7 +49,7 @@
                     <p><strong>Наличност:</strong> @product.Availability бр.</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-primary">Детайли</a>
-                        <form method="post" asp-controller="Cart" asp-action="AddProductToCart" asp-route-productId="@product.ProductId">
+                        <form method="post" asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.ProductId">
                             <input type="number" name="quantity" value="1" min="1" class="form-control mb-2" />
                             <button type="submit" class="btn btn-success">Добави в количката</button>
                         </form>
