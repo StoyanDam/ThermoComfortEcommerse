@@ -26,13 +26,14 @@ namespace ThermoComfort.Data.Models
             public DateTime OrderDate { get; set; }
 
             [Display(Name = "Дата на доставка")]
-            public DateTime DeliveryDate
+            [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = false)]
+            public DateTime DeliveryDate 
             {
-                get => CalculateDeliveryDate(OrderDate);
-                set => DeliveryDate = value; // You could override if needed, but the getter will auto-calculate
+                get => CalculateDeliveryDate(OrderDate).Date;
+            //  set => DeliveryDate = value; You could override if needed, but the getter will auto-calculate
             }
 
-            public bool IsPaid { get; set; }
+        public bool IsPaid { get; set; }
             public ICollection<OrderProduct> OrderProducts { get; set; } = new HashSet<OrderProduct>();
 
             private DateTime CalculateDeliveryDate(DateTime orderDate)
@@ -51,9 +52,9 @@ namespace ThermoComfort.Data.Models
                     }
                 }
 
-                return deliveryDate;
+                return deliveryDate.Date;
             }
         }
 
-    }
+    
 }

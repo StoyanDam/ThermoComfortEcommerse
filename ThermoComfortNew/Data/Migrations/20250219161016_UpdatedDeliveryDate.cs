@@ -6,155 +6,166 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ThermoComfortNew.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdateDeliveryDate : Migration
+    public partial class UpdatedDeliveryDate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropColumn(
+                name: "DeliveryDate",
+                table: "Orders");
+
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 1,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(1878));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(529));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 2,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(1894));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(534));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 3,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(1907));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(539));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 4,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(1938));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(543));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 5,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(1970));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(547));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 6,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(1986));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(552));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 7,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(1999));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(556));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 8,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(2037));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(560));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 9,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(2050));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(564));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 10,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(2062));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(568));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 11,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(2075));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(572));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 12,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(2088));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(576));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 13,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(2100));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(580));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 14,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(2117));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(586));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 15,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(2136));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(590));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 16,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(2190));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(594));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 17,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(2202));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(598));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 18,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(2214));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(602));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 19,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(2389));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(606));
 
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",
                 keyValue: 20,
                 column: "CreatedOn",
-                value: new DateTime(2025, 2, 19, 9, 39, 34, 155, DateTimeKind.Local).AddTicks(2404));
+                value: new DateTime(2025, 2, 19, 18, 10, 15, 462, DateTimeKind.Local).AddTicks(610));
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<DateTime>(
+                name: "DeliveryDate",
+                table: "Orders",
+                type: "datetime2",
+                nullable: false,
+                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+
             migrationBuilder.UpdateData(
                 table: "Products",
                 keyColumn: "ProductId",

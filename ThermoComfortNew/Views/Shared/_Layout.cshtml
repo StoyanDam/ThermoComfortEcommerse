@@ -34,9 +34,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="All">Всички продукти</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Orders" asp-action="Index">Моите поръчки</a>
                         </li>
+                        }
 
                         @if (this.User.IsInRole("Admin"))
                         {
@@ -56,10 +59,13 @@
                         }
                     </ul>
 
-                    <a class="nav-link text-dark" asp-controller="Cart" asp-action="Index">
-                        <i class="fas fa-shopping-cart"></i> Количка
-                        <span class="badge bg-danger" id="cartCounter">(@ViewBag.CartCount)</span>
-                    </a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link text-light" asp-controller="Cart" asp-action="Index">
+                            <i class="fas fa-shopping-cart"></i> Количка
+                            <span class="badge bg-danger" id="cartCounter">(@ViewBag.CartCount)</span>
+                        </a>
+                    }
 
                     <partial name="_LoginPartial" />
                 </div>
@@ -77,7 +83,7 @@
             <p>
                 <a href="#">Privacy Policy</a> |
                 <a href="#">Terms of Service</a> |
-                <a href="#">Contact Us</a>
+                <a asp-controller="Home" asp-action = "Contact">Свържете се с нас</a>
             </p>
         </div>
     </footer>

@@ -154,7 +154,7 @@ namespace ThermoComfortNew.Data
                     ProductId = 9,
                     ProductName = "Газов котел Bosch Condens 2500W",
                     Description = "Bosch Condens 2500W WBC 28-1 DCE 23 - двуконтурен газов кондензен котел с мощност 3,7-28KW. Работи на принципа на  т. нар. кондензна техника – използва  както топлината, която възниква като измерима температура при процес на горене, така и  топлината от кондензацията на водните пари в отработените газове. ",
-                    ImageUrl = "gazov-kotel4.jpg",
+                    ImageUrl = "gazov-kotel4.png",
                     Price = 2479.00m,
                     Availability = 5,
                     Characteristics = "Енергиен клас\t\r\nA++/A++\r\n\r\nГаранция\t\r\nдо 24 месеца\r\n\r\nМаксимална ел. консумация\t\r\n94 W\r\n\r\nМощност при 40/30°C-kW\t\r\n4,1 - 25,4\r\n\r\nМощност при 50/30°C-kW\t\r\n3,3 - 25,2\r\n\r\nМощност при 80/30°C-kW\t\r\n3,7 - 24,1\r\n\r\nПроизводител\t\r\nBosch",

@@ -2,28 +2,45 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ThermoComfort.Data.Models;
 using ThermoComfortNew.Data;
+using ThermoComfortNew.Domain;
 
 namespace ThermoComfortNew.Controllers
 {
     public class OrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public OrdersController(ApplicationDbContext context)
+        public OrdersController(ApplicationDbContext context,UserManager<ApplicationUser> userManager )
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Orders
+        [Authorize]
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Orders.Include(o => o.ApplicationUser);
-            return View(await applicationDbContext.ToListAsync());
+            var user = await _userManager.GetUserAsync(User);
+
+            IQueryable<Order> ordersQuery = _context.Orders
+                .Include(o => o.ApplicationUser); // Include user data
+
+            if (!User.IsInRole("Admin"))
+            {
+                // Regular users see only their orders
+                ordersQuery = ordersQuery.Where(o => o.ApplicationUserId == user.Id);
+            }
+
+            var orders = await ordersQuery.ToListAsync();
+            return View(orders);
         }
 
         // GET: Orders/Details/5
