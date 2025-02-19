@@ -1,241 +1,44 @@
-﻿@* @{
-    ViewData["Title"] = "ThermoComfort";
-}
-
-<head>
-<link rel="stylesheet" href="~/css/HomePage.css">
-</head>
-<header>
-    <div class="container">
-        <div class="logo">ThermoComfort</div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
-<section class="hero">
-    <div class="container">
-        <h1>Welcome to ThermoComfort</h1>
-        <p>Your Comfort, Our Priority</p>
-        <a href="#" class="btn">Shop Now</a>
-    </div>
-</section>
-
-<section class="featured-products">
-    <div class="container">
-        <h2>Featured Products</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x200" alt="Product 1">
-                <div class="product-info">
-                    <h3>Product 1</h3>
-                    <p>High-quality product for your comfort.</p>
-                    <p class="price">$99.99</p>
-                </div>
-            </div>
-            <!-- Add more product cards -->
-        </div>
-    </div>
-</section>
-
-<section class="services">
-    <div class="container">
-        <h2>Our Services</h2>
-        <div class="service-grid">
-            <div class="service-card">
-                <i class="fas fa-shipping-fast"></i>
-                <h3>Fast Shipping</h3>
-                <p>Get your products delivered quickly.</p>
-            </div>
-            <!-- Add more service cards -->
-        </div>
-    </div>
-</section>
-
-<footer>
-    <div class="container">
-        <div class="social-links">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-        <p>&copy; 2023 ThermoComfort. All rights reserved.</p>
-    </div>
-</footer>
- *@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thermo Comfort - Home</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .container {
-            width: 80%;
-            margin: auto;
-        }
-
-        .top-bar {
-            background: #333;
-            color: white;
-            padding: 10px 0;
-        }
-
-            .top-bar ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-                display: flex;
-                justify-content: space-between;
-            }
-
-            .top-bar a {
-                color: white;
-                text-decoration: none;
-                margin: 0 10px;
-            }
-
-        .navbar {
-            background: #555;
-            padding: 15px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-        }
-
-            .nav-links li {
-                margin: 0 15px;
-            }
-
-            .nav-links a {
-                color: white;
-                text-decoration: none;
-            }
-
-        .search-bar {
-            padding: 5px;
-            width: 200px;
-        }
-
-        .hero {
-            background: url('hero.jpg') no-repeat center center/cover;
-            color: white;
-            text-align: center;
-            padding: 100px 0;
-        }
-
-        .btn {
-            display: inline-block;
-            background: #ff6600;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            margin-top: 10px;
-        }
-
-        .categories {
-            display: flex;
-            justify-content: space-around;
-            padding: 50px 0;
-        }
-
-        .category-item {
-            text-align: center;
-        }
-
-            .category-item img {
-                width: 150px;
-                height: auto;
-            }
-
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="~/css/HomePage.css">
 </head>
 <body>
     <header>
-        <div class="top-bar">
-            <div class="container">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                <div class="account-links">
-                    <a href="#">My Account</a>
-                    <a href="#">Cart (0)</a>
+     
+    </header>
+
+    <main class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Thermo Comfort</h1>
+            <p>Your one-stop solution for premium heating systems.</p>
+            <a href="products.html" class="btn">Shop Now</a>
+        </div>
+    </main>
+
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose Us?</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <h3>Energy Efficient</h3>
+                    <p>Our products are designed to reduce energy consumption.</p>
+                </div>
+                <div class="feature">
+                    <h3>High Quality</h3>
+                    <p>We provide the best heating solutions with top-notch quality.</p>
+                </div>
+                <div class="feature">
+                    <h3>Customer Support</h3>
+                    <p>24/7 support to help with all your heating needs.</p>
                 </div>
             </div>
         </div>
-        <nav class="navbar">
-            <div class="container">
-                <h1 class="logo">Thermo Comfort</h1>
-                <ul class="nav-links">
-                    <li><a href="#">Heating Systems</a></li>
-                    <li><a href="#">Water Heaters</a></li>
-                    <li><a href="#">Radiators</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">Deals</a></li>
-                </ul>
-                <input type="text" placeholder="Search..." class="search-bar">
-            </div>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div class="container">
-            <div class="hero-text">
-                <h2>Efficient Heating Solutions for Your Home</h2>
-                <p>Discover the best heating systems to keep your home warm and comfortable.</p>
-                <a href="#" class="btn">Shop Now</a>
-            </div>
-        </div>
     </section>
 
-    <section class="categories">
-        <div class="container">
-            <div class="category-item">
-                <img src="heater.jpg" alt="Heating Systems">
-                <h3>Heating Systems</h3>
-            </div>
-            <div class="category-item">
-                <img src="water-heater.jpg" alt="Water Heaters">
-                <h3>Water Heaters</h3>
-            </div>
-            <div class="category-item">
-                <img src="radiator.jpg" alt="Radiators">
-                <h3>Radiators</h3>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Thermo Comfort. All rights reserved.</p>
-        </div>
-    </footer>
+  
 </body>
 </html>

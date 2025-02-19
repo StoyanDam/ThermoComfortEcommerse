@@ -30,251 +30,165 @@ body {
     text-align: start;
 }
 .dropdown-slide .nav-link {
-    color: #333;*/ /* Dark text color for the button */
-/*}*/
+    color: #333;  Dark text color for the button 
+}
 
-/* Custom CSS for slide-down animation */
-/*.dropdown-slide .dropdown-menu {
+ Custom CSS for slide-down animation 
+.dropdown-slide .dropdown-menu {
     display: block;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
     transform: translateY(-10px);
-    background-color: white;*/ /* Ensure background is visible */
-    /*border: 1px solid #ccc;*/ /* Add a border for better visibility */
-    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/ /* Add a shadow for better contrast */
-/*}
+    background-color: white;  Ensure background is visible 
+    border: 1px solid #ccc;  Add a border for better visibility 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  Add a shadow for better contrast 
+}
 
 .dropdown-slide:hover .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-}*/
+}
 
-/* Ensure dropdown menu text is visible */
-/*.dropdown-menu a {
-    color: #333;*/ /* Dark text color */
-    /*padding: 8px 16px;*/ /* Add padding for better spacing */
-    /*display: block;*/ /* Make links block-level for full width */
-/*}
+ Ensure dropdown menu text is visible 
+.dropdown-menu a {
+    color: #333;  Dark text color 
+    padding: 8px 16px;  Add padding for better spacing 
+    display: block;  Make links block-level for full width 
+}
 
     .dropdown-menu a:hover {
-        background-color: #f8f9fa;*/ /* Light background on hover */
-    /*}*/
+        background-color: #f8f9fa;  Light background on hover 
+    }
 
-/* Style for the shopping cart button */
-/*.nav-link .fa-shopping-cart {
+ Style for the shopping cart button 
+.nav-link .fa-shopping-cart {
     font-size: 1.2rem;
     margin-right: 5px;
-}*/
+}
 
-/* Style for the cart item count badge */
-/*.badge.bg-danger {
+ Style for the cart item count badge 
+.badge.bg-danger {
     font-size: 0.8rem;
     margin-left: 5px;
-}*/
-/* Green Theme Colors */
-:root {
-    --primary-green: #2e7d32;
-    --dark-green: #1b5e20;
-    --light-green: #4caf50;
-    --background: #f1f8e9;
-    --text-dark: #1b1b1b;
-    --text-light: #ffffff;
+}
+*/
+
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
 }
 
-/* Hero Section */
-.hero {
-    background-color: var(--light-green);
-    color: var(--text-light);
-    padding: 4rem 0;
-    text-align: center;
+/* Navbar Styles */
+.navbar {
+    background-color: #2b7a2b !important; /* Green theme */
+    padding: 10px 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-    .hero h1 {
-        font-size: 3rem;
-        margin-bottom: 1rem;
-    }
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff !important;
+}
 
-    .hero p {
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-    }
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.1rem;
+}
 
-    .hero .btn {
-        background-color: var(--dark-green);
-        color: var(--text-light);
-        padding: 1rem 2rem;
+    .navbar-nav .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.2);
         border-radius: 5px;
-        text-decoration: none;
-        font-size: 1.2rem;
-        transition: background-color 0.3s;
     }
 
-        .hero .btn:hover {
-            background-color: var(--primary-green);
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none; /* Hide the dropdown by default */
+    position: absolute;
+    top: 100%; /* Position it below the parent */
+    left: 0;
+    background-color: #2b7a2b;
+    border: none;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block; /* Show the dropdown on hover */
+}
+
+.dropdown-menu li a {
+    color: #ffffff !important;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+    display: block; /* Ensure links take up full width */
+}
+
+    .dropdown-menu li a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+    }
+
+/* Cart Icon */
+.nav-link i.fas {
+    font-size: 1.3rem;
+    color: #ffffff;
+}
+
+.badge.bg-danger {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 50%;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #2b7a2b;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+    .footer a {
+        color: #ffffff;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s ease-in-out;
+    }
+
+        .footer a:hover {
+            color: #c0e6c0;
         }
 
-/* Featured Products */
-.featured-products {
-    padding: 4rem 0;
-}
-
-    .featured-products h2 {
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar-nav {
         text-align: center;
-        margin-bottom: 2rem;
-        font-size: 2rem;
     }
 
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+        .navbar-nav .nav-item {
+            width: 100%;
+        }
 }
-
-.product-card {
-    background-color: var(--text-light);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-}
-
-    .product-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .product-card img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-
-.product-info {
-    padding: 1rem;
-    text-align: center;
-}
-
-    .product-info h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .product-info p {
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .product-info .price {
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: var(--primary-green);
-    }
-
-/* Services Section */
-.services {
-    padding: 4rem 0;
-    background-color: var(--light-green);
-    color: var(--text-light);
-}
-
-    .services h2 {
-        text-align: center;
-        margin-bottom: 2rem;
-        font-size: 2rem;
-    }
-
-.service-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.service-card {
-    text-align: center;
-    padding: 1.5rem;
-    background-color: var(--dark-green);
-    border-radius: 10px;
-    transition: transform 0.3s;
-}
-
-    .service-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .service-card i {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-    }
-
-    .service-card h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .service-card p {
-        font-size: 1rem;
-    }
-
-/* Slider Section */
-.slider-container {
-    height: 60vh;
-    position: relative;
-    overflow: hidden;
-    margin: 2rem 0;
-}
-
-.slides {
-    width: 300%;
-    height: 100%;
-    display: flex;
-    animation: slide 15s infinite;
-}
-
-.slide {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-    .slide img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-.slide-content {
-    position: absolute;
-    bottom: 20%;
-    left: 5%;
-    color: var(--text-light);
-    background-color: rgba(46, 125, 50, 0.8);
-    padding: 1.5rem;
-    max-width: 40%;
-}
-
-@keyframes slide {
-    0% {
-        transform: translateX(0%);
-    }
-
-    33% {
-        transform: translateX(0%);
-    }
-
-    38% {
-        transform: translateX(-100%);
-    }
-
-    71% {
-        transform: translateX(-100%);
-    }
-
-    76% {
-        transform: translateX(-200%);
-    }
-
-    100% {
-        transform: translateX(-200%);
-    }
+.logo {
+    height: 50px; /* Adjust as needed */
+    width: 50px; /* Ensure it's a perfect circle */
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image fills the circle */
+    border: 2px solid white; /* Optional: Adds a white border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Adds a slight shadow */
 }

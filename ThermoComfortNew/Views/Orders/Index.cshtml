@@ -1,19 +1,21 @@
 ﻿@model IEnumerable<ThermoComfort.Data.Models.Order>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Поръчки";
 }
 
-<h1>Index</h1>
+<h1 class="text-center">Моите поръчки</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
+    <div class="text-center mb-3">
+    <a asp-action="Create" type="button" class="btn btn-outline-success">Създай поръчка</a>
+    </div>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationUser)
+                @Html.DisplayNameFor(model => model.ApplicationUser.FullName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PhoneNumber)
@@ -37,7 +39,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ApplicationUser.Id)
+                @Html.DisplayFor(modelItem => item.ApplicationUser.FullName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
@@ -55,9 +57,11 @@
                 @Html.DisplayFor(modelItem => item.DeliveryDate)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <div class="action-buttons">
+                <a asp-action="Edit" asp-route-id="@item.Id">Промени</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Виж детайли</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
+                </div>
             </td>
         </tr>
 }

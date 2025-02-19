@@ -184,6 +184,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ThermoComfort.Data.Models;
 using ThermoComfortNew.Data;
@@ -293,6 +294,7 @@ public class CartController : Controller
             Address = address,
             PhoneNumber = phoneNumber,
             OrderDate = DateTime.Now,
+            IsPaid = true, // Mark order as paid
             TotalPrice = cartItems.Sum(c => c.Product.Price * c.Quantity),
             OrderProducts = cartItems.Select(c => new OrderProduct
             {
@@ -302,11 +304,29 @@ public class CartController : Controller
         };
 
         _context.Orders.Add(order);
-        _context.ShoppingCartItems.RemoveRange(cartItems);
+        _context.ShoppingCartItems.RemoveRange(cartItems); // Clear cart after checkout
         await _context.SaveChangesAsync();
 
-        return RedirectToAction("Index", "Orders");
+        return RedirectToAction("Index", "Orders"); // Redirect after checkout
     }
+
+    [HttpGet]
+    public async Task<IActionResult> GetCartCount()
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (userId == null)
+        {
+            return Json(new { count = 0 });
+        }
+
+        var cartCount = await _context.ShoppingCartItems
+            .Where(c => c.ApplicationUserId == userId)
+            .SumAsync(c => c.Quantity);
+
+        return Json(new { count = cartCount });
+    }
+
+
 
 }
 
