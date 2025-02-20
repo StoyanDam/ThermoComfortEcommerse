@@ -254,26 +254,31 @@ public class CartController : Controller
         return RedirectToAction("Index");
     }
 
+    [HttpGet]
     [Authorize]
     public async Task<IActionResult> Checkout()
     {
         var user = await _userManager.GetUserAsync(User);
+        if (user == null) return RedirectToAction("Index", "Home");
+
         var cartItems = await _context.ShoppingCartItems
             .Where(c => c.ApplicationUserId == user.Id)
             .Include(c => c.Product)
             .ToListAsync();
 
-        if (!cartItems.Any()) return RedirectToAction("Index");
+        if (!cartItems.Any())
+        {
+            TempData["Message"] = "Your cart is empty.";
+            return RedirectToAction("Index");
+        }
 
-        var totalPrice = cartItems.Sum(c => c.Product.Price * c.Quantity);
-
-        var model = new CheckoutViewModel
+        var viewModel = new CheckoutViewModel
         {
             CartItems = cartItems,
-            TotalPrice = totalPrice
+            TotalPrice = cartItems.Sum(i => i.Product.Price * i.Quantity)
         };
 
-        return View(model);
+        return View(viewModel);
     }
 
     [HttpPost]
@@ -286,7 +291,21 @@ public class CartController : Controller
             .Include(c => c.Product)
             .ToListAsync();
 
-        if (!cartItems.Any()) return RedirectToAction("Index");
+        if (!cartItems.Any())
+        {
+            TempData["Error"] = "Вашата количка е празна."; // Your cart is empty.
+            return RedirectToAction("Index");
+        }
+
+        // Check stock for each product
+        foreach (var cartItem in cartItems)
+        {
+            if (cartItem.Product.Availability < cartItem.Quantity)
+            {
+                TempData["Error"] = $"Недостатъчна наличност за '{cartItem.Product.ProductName}'. Налични: {cartItem.Product.Availability} броя.";
+                return RedirectToAction("Index");
+            }
+        }
 
         var order = new Order
         {
@@ -294,7 +313,7 @@ public class CartController : Controller
             Address = address,
             PhoneNumber = phoneNumber,
             OrderDate = DateTime.Now,
-            IsPaid = true, // Mark order as paid
+            IsPaid = true,
             TotalPrice = cartItems.Sum(c => c.Product.Price * c.Quantity),
             OrderProducts = cartItems.Select(c => new OrderProduct
             {
@@ -304,11 +323,24 @@ public class CartController : Controller
         };
 
         _context.Orders.Add(order);
+
+        // Reduce product availability
+        foreach (var cartItem in cartItems)
+        {
+            var product = await _context.Products.FindAsync(cartItem.ProductId);
+            if (product != null)
+            {
+                product.Availability -= cartItem.Quantity;
+            }
+        }
+
         _context.ShoppingCartItems.RemoveRange(cartItems); // Clear cart after checkout
         await _context.SaveChangesAsync();
 
-        return RedirectToAction("Index", "Orders"); // Redirect after checkout
+        TempData["Success"] = "Вашата поръчка е успешно направена!"; // Your order has been successfully placed.
+        return RedirectToAction("Index", "Orders");
     }
+
 
     [HttpGet]
     public async Task<IActionResult> GetCartCount()

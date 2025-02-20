@@ -2,6 +2,27 @@
 
 <h2>Shopping Cart</h2>
 
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+@if (TempData.ContainsKey("Message"))
+{
+    <div class="alert alert-info">
+        @TempData["Message"]
+    </div>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -31,4 +52,11 @@
     </tbody>
 </table>
 
-<a asp-action="Checkout" class="btn btn-success">Proceed to Checkout</a>
+@if (!Model.Any())
+{
+    <p>Your cart is empty.</p>
+}
+else
+{
+    <a asp-action="Checkout" class="btn btn-success">Proceed to Checkout</a>
+}
