@@ -1,35 +1,5 @@
 ﻿@model IEnumerable<ThermoComfort.Data.Models.Product>
 
-@* @{
-    ViewData["Title"] = "All Products";
-}
-
-<h2 class="text-center">Всички продукти</h2>
-<div class="row">
-    @foreach (var product in Model)
-    {
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" src="@Url.Content("~/Images/" + product.ImageUrl)" alt="@product.ProductName">
-
-                <div class="card-body">
-                    <h5 class="card-title">@product.ProductName</h5>
-                    <p class="card-text text-muted">@product.Description.Substring(0, Math.Min(100, product.Description.Length))...</p>
-                    <p><strong>Цена:</strong> @product.Price лв.</p>
-                    <p><strong>Наличност:</strong> @product.Availability бр.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-primary">Детайли</a>
-                        <form method="post" asp-action="AddToCart" asp-route-id="@product.ProductId">
-                            <button type="submit" class="btn btn-success">Добави в количката</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-</div> *@
-
-
 @{
     ViewData["Title"] = "All Products";
 }
@@ -49,10 +19,13 @@
                     <p><strong>Наличност:</strong> @product.Availability бр.</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-primary">Детайли</a>
-                        <form method="post" asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.ProductId">
-                            <input type="number" name="quantity" value="1" min="1" class="form-control mb-2" />
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <form method="post" asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.ProductId">
+                                <input type="number" name="quantity" value="1" min="1" class="form-control mb-2" />
                             <button type="submit" class="btn btn-success">Добави в количката</button>
                         </form>
+                        }
                     </div>
                 </div>
             </div>

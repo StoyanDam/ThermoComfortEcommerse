@@ -5,20 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thermo Comfort - Home</title>
     <link rel="stylesheet" href="~/css/HomePage.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+<div class="text-center">
+    <h1 style="font-family:'URW Chancery L', cursive;color:darkgreen"> Добре дошли в ТермоКомфорт</h1>
+
+</div>
+
 <body>
-    <header>
-     
-    </header>
 
-    <main class="hero">
-        <div class="hero-content">
-            <h1>Welcome to Thermo Comfort</h1>
-            <p>Your one-stop solution for premium heating systems.</p>
-            <a href="products.html" class="btn">Shop Now</a>
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2"></button>
         </div>
-    </main>
 
+        <!-- Carousel Items -->
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="3000">
+                <img src="~/Images/cozyInteriorSlider.webp" class="d-block w-100" alt="Slide 1">
+                <div class="carousel-caption">
+                    <p>Най-иновативните технологии на пазара! </p>
+                </div>
+            </div>
+            <div class="carousel-item active" data-bs-interval="3000">
+                <img src="~/Images/gasBoilerSlider.webp" class="d-block w-100" alt="Slide 2">
+                <div class="carousel-caption">
+                    <p>Най-новите модели!</p>
+                </div>
+            </div>
+            <div class="carousel-item active" data-bs-interval="3000">
+                <img src="~/Images/pelletStoveSlider.webp" class="d-block w-100" alt="Slide 3">
+                <div class="carousel-caption" >
+                    <p>Най-добри и конкурентни цени!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Arrows -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
     <section class="features">
         <div class="container">
             <h2>Why Choose Us?</h2>
