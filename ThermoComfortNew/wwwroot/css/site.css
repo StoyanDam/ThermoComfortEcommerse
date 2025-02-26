@@ -192,3 +192,8 @@ body {
     border: 2px solid white; /* Optional: Adds a white border */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Adds a slight shadow */
 }
+.product-image{
+    max-height: 354px;
+    max-width: 354px;
+}
+

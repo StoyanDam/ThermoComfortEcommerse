@@ -188,7 +188,7 @@ namespace ThermoComfortNew.Data.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("ThermoComfort.Data.Models.OrderProduct", b =>
@@ -214,7 +214,7 @@ namespace ThermoComfortNew.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderProducts");
+                    b.ToTable("OrderProducts", (string)null);
                 });
 
             modelBuilder.Entity("ThermoComfort.Data.Models.Product", b =>
@@ -266,7 +266,7 @@ namespace ThermoComfortNew.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
 
                     b.HasData(
                         new
@@ -586,7 +586,7 @@ namespace ThermoComfortNew.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
                 });
 
             modelBuilder.Entity("ThermoComfortNew.Domain.ApplicationUser", b =>
@@ -680,7 +680,7 @@ namespace ThermoComfortNew.Data.Migrations
 
                     b.HasKey("CategoryID");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -731,7 +731,7 @@ namespace ThermoComfortNew.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ShoppingCartItems");
+                    b.ToTable("ShoppingCartItems", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

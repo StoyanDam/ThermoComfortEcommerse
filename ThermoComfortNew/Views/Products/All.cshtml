@@ -5,12 +5,24 @@
 }
 
 <h2 class="text-center">Всички продукти</h2>
+<form method="get" asp-action="All" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Търсене по име..." value="@Context.Request.Query["searchTerm"]" />
+        <button type="submit" class="btn btn-primary">Търси</button>
+    </div>
+</form>
+<!-- Sorting Links -->
+
+<div class="mb-3 text-center">
+    <a asp-action="All" asp-route-sortOrder="price_asc" class="btn btn-outline-secondary ">Сортирай по цена ↑</a>
+    <a asp-action="All" asp-route-sortOrder="price_desc" class="btn btn-outline-secondary ">Сортирай по цена ↓</a>
+</div>
 <div class="row">
     @foreach (var product in Model)
     {
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" src="@Url.Content("~/Images/" + product.ImageUrl)" alt="@product.ProductName">
+                <img class="card-img-top product-image" src="@Url.Content("~/Images/" + product.ImageUrl)" alt="@product.ProductName">
 
                 <div class="card-body">
                     <h5 class="card-title">@product.ProductName</h5>
