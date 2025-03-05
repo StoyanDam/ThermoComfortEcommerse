@@ -160,7 +160,7 @@
                     <td>
                         @if (!string.IsNullOrEmpty(item.ImageUrl))
                         {
-                            <img src="@item.ImageUrl" alt="Product Image" style="max-width: 50px; max-height: 50px;">
+                            <img class="product-image" src="@Url.Content("~/Images/" + item.ImageUrl)" style="max-width: 50px; max-height: 50px;" alt="@item.ProductName">
                         }
                     </td>
                     <td>@Html.DisplayFor(modelItem => item.Price)</td>

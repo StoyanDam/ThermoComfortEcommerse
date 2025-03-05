@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using ThermoComfortNew.Domain;
 
 namespace ThermoComfort.Data.Models
@@ -21,10 +22,11 @@ namespace ThermoComfort.Data.Models
         public string ImageUrl { get; set; }
 
         [Display(Name = "Цена")]
-
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
         [Display(Name = "Наличност")]
+        [Range(0, int.MaxValue, ErrorMessage = "Availability must be a non-negative number.")]
         public int Availability { get; set; }
 
         [Display(Name = "Характеристики")]
@@ -38,12 +40,12 @@ namespace ThermoComfort.Data.Models
         public bool IsDeleted { get; set; } = false;
 
         [Display(Name = "Категория")]
+        [ForeignKey("Category")]
         public int CategoryId { get; set; }
 
         public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
 
         public ICollection<OrderProduct> OrderProducts { get; set; } = new HashSet<OrderProduct>();
-        
         public virtual Category Category { get; set; }
     }
 }

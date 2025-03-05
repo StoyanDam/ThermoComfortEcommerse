@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using ThermoComfortNew.Domain;
 
 namespace ThermoComfort.Data.Models
@@ -18,7 +19,7 @@ namespace ThermoComfort.Data.Models
 
             [Display(Name = "Адрес")]
             public string Address { get; set; }
-
+            [NotMapped]
             [Display(Name = "Крайна цена")]
             public decimal TotalPrice { get; set; }
 
