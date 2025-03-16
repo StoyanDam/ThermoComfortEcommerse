@@ -1,10 +1,12 @@
 ﻿@page
 @model RegisterModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Регистрация";
 }
-
-<div class="d-flex justify-content-center align-items-center vh-100">
+<head>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<div class="row d-flex justify-content-center align-items-center text-center form-holder">
     <div class="col-md-4">
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h2 class="text-center">Създаване на нов акаунт</h2>
@@ -46,7 +48,7 @@
                 <label asp-for="Input.ConfirmPassword">Повтори паролата</label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Регистрирай ме</button>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg  btn-success">Регистрирай ме</button>
         </form>
     </div>
 </div>

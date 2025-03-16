@@ -196,4 +196,6 @@ body {
     max-height: 354px;
     max-width: 354px;
 }
-
+.form-holder{
+    padding-block: 50px;
+}

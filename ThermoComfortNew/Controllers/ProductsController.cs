@@ -380,29 +380,44 @@ namespace ThermoComfortNew.Controllers
             return uniqueFileName;
         }
 
-        public async Task<IActionResult> All(int? categoryId, string sortOrder)
+        public async Task<IActionResult> All(int? categoryId, string sortOrder, string searchTerm)
         {
             var products = _context.Products
                 .Where(p => !p.IsDeleted);
 
             // Fetch categories for dropdown
             ViewBag.Categories = await _context.Categories.ToListAsync();
+            ViewBag.SelectedCategory = categoryId;
 
             // Filtering by category
             if (categoryId.HasValue && categoryId > 0)
             {
                 products = products.Where(p => p.CategoryId == categoryId.Value);
             }
-            // Default sorting (Name Descending)
-            products = products.OrderByDescending(p => p.ProductName);
 
-            // Sorting by price (ascending) if selected
-            if (sortOrder == "price_asc")
+            // Filtering by search term
+            if (!string.IsNullOrEmpty(searchTerm))
             {
-                products = products.OrderBy(p => p.Price);
+                products = products.Where(p => p.ProductName.Contains(searchTerm));
+            }
+
+            // Sorting
+            switch (sortOrder)
+            {
+                case "price_asc":
+                    products = products.OrderBy(p => p.Price);
+                    break;
+                case "price_desc":
+                    products = products.OrderByDescending(p => p.Price);
+                    break;
+                default:
+                    products = products.OrderByDescending(p => p.ProductName);
+                    break;
             }
 
             return View(await products.ToListAsync());
         }
+
+
     }
 }

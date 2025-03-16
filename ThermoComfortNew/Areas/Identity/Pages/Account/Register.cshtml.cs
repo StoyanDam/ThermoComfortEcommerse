@@ -52,15 +52,17 @@ namespace ThermoComfortNew.Areas.Identity.Pages.Account
             ///модифицираме модела
             ///
             [Required(ErrorMessage = "Потребителското име е задължително.")]
+            [MinLength(2, ErrorMessage = "Въведи поне 2 символа.")]
+            [MaxLength(100, ErrorMessage = "Въведи не повече от 100 символа.")]
             [Display(Name = "Потребителско име ")]
             public string NickName { get; set; }
 
             [Required(ErrorMessage = "Името е задължително.")]
-            [Display(Name = "Собсвено име ")]
+            [Display(Name = "Собствено име ")]
             public string FirstName { get; set; }
 
-            [Required(ErrorMessage = "Името е задължително.")]
-            [Display(Name = "Фамилия име ")]
+            [Required(ErrorMessage = "Фамилията е задължителна.")]
+            [Display(Name = "Фамилия ")]
             public string LastName { get; set; }
 
             [Required(ErrorMessage = "Имейлът е задължителен.")]
@@ -72,7 +74,7 @@ namespace ThermoComfortNew.Areas.Identity.Pages.Account
             [Required(ErrorMessage = "Телефонният номер е задължителен.")]
             public string PhoneNumber { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Паролата е задължителна.")]
             [StringLength(100, ErrorMessage = "{0} трябва да е най-малко {2} и най-много {1} символа.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Парола")]

@@ -7,7 +7,8 @@
         <title>@ViewData["Title"] - ТермоКомфорт</title>
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    
+        <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+
 
 
         <!-- Add Font Awesome for the cart icon -->
@@ -50,8 +51,7 @@
                                     Администрация <span class="tf-ion-ios-arrow-down"></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" asp-controller="Products" asp-action="Index">Промени продукт</a></li>
-                                    <li><a class="dropdown-item" asp-controller="Products" asp-action="All">Продукти</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Products" asp-action="Index">Продукти</a></li>
                                     <li><a class="dropdown-item" asp-controller="ApplicationUsers" asp-action="Create">Добави потребител</a></li>
                                     <li><a class="dropdown-item" asp-controller="ApplicationUsers" asp-action="All">Потребители</a></li>
                                     <li><a class="dropdown-item" asp-controller="Categories" asp-action="Index">Категории</a></li>
@@ -83,9 +83,10 @@
         <div class="container">
             <p>&copy; 2025 ThermoComfort. All Rights Reserved.</p>
             <p>
-                <a href="#">Privacy Policy</a> |
-                <a href="#">Terms of Service</a> |
-                <a asp-controller="Home" asp-action = "Contact">Свържете се с нас</a>
+                <a asp-controller="Home" asp-action="Contact">Свържете се с нас</a>|
+                <span>Тел.: +359889235511</span>|
+                <span>stoyan_dam@abv.bg</span> 
+                
             </p>
         </div>
     </footer>

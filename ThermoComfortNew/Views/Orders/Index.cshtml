@@ -6,11 +6,6 @@
 
 <h1 class="text-center">Моите поръчки</h1>
 
-
-    <div class="text-center mb-3">
-    <a asp-action="Create" type="button" class="btn btn-outline-success">Създай поръчка</a>
-    </div>
-
 <table class="table">
     <thead>
         <tr>
@@ -36,31 +31,35 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicationUser.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeliveryDate)
-            </td>
-            <td>
-                <div class="action-buttons">
-                <a asp-action="Edit" asp-route-id="@item.Id">Промени</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Виж детайли</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Изтрий</a>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeliveryDate)
+                </td>
+                <td>
+                    <div class="action-buttons">
+                        @if (this.User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Id">Промени</a>
+                        }
+                        |
+                        <a asp-action="Details" asp-route-id="@item.Id">Виж детайли</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Откажи поръчка</a>
                 </div>
             </td>
         </tr>

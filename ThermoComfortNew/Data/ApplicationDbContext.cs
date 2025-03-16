@@ -186,7 +186,7 @@ namespace ThermoComfortNew.Data
                    Characteristics = "Мощност охлаждане: 2.5 kW; Мощност отопление: 2.8 kW; Енергиен клас: A++; Ниво на шум: 21 dB",
                    Brand = "Daikin",
                    CreatedOn = DateTime.Now,
-                   CategoryId = 3
+                   CategoryId = 4
                },
                 new Product
                 {
@@ -199,7 +199,7 @@ namespace ThermoComfortNew.Data
                     Characteristics = "Мощност охлаждане: 2.5 kW; Мощност отопление: 3.15 kW; Енергиен клас: A+; Ниво на шум: 22 dB",
                     Brand = "Mitsubishi Electric",
                     CreatedOn = DateTime.Now,
-                    CategoryId = 3
+                    CategoryId = 4
                 },
                 new Product
                 {
@@ -212,7 +212,7 @@ namespace ThermoComfortNew.Data
                     Characteristics = "Мощност охлаждане: 2.5 kW; Мощност отопление: 3.2 kW; Енергиен клас: A++; Ниво на шум: 20 dB",
                     Brand = "Fujitsu",
                     CreatedOn = DateTime.Now,
-                    CategoryId = 3
+                    CategoryId = 4
                 },
                 new Product
                 {
@@ -225,7 +225,7 @@ namespace ThermoComfortNew.Data
                     Characteristics = "Мощност охлаждане: 2.5 kW; Мощност отопление: 3.2 kW; Енергиен клас: A++; Ниво на шум: 21 dB",
                     Brand = "Toshiba",
                     CreatedOn = DateTime.Now,
-                    CategoryId = 3
+                    CategoryId = 4
                 },
                 new Product
                 {
@@ -238,7 +238,7 @@ namespace ThermoComfortNew.Data
                     Characteristics = "Мощност охлаждане: 2.6 kW; Мощност отопление: 2.9 kW; Енергиен клас: A+; Ниво на шум: 22 dB",
                     Brand = "Gree",
                     CreatedOn = DateTime.Now,
-                    CategoryId = 3
+                    CategoryId = 4
                 },
                 new Product
                 {
@@ -251,7 +251,7 @@ namespace ThermoComfortNew.Data
                     Characteristics = "Мощност: 15 kW; КПД: 91%; Вместимост на бункера: 20 кг; Консумация на пелети: 1.1 - 3.3 кг/ч; Тегло: 150 кг",
                     Brand = "MIA",
                     CreatedOn = DateTime.Now,
-                    CategoryId = 4
+                    CategoryId = 3
                 },
                 new Product
                 {
@@ -264,7 +264,7 @@ namespace ThermoComfortNew.Data
                     Characteristics = "Мощност: 18 kW; КПД: 92%; Вместимост на бункера: 25 кг; Консумация на пелети: 1.2 - 3.8 кг/ч; Тегло: 160 кг",
                     Brand = "DI CALORE",
                     CreatedOn = DateTime.Now,
-                    CategoryId = 4
+                    CategoryId = 3
                 },
                 new Product
                 {
@@ -277,7 +277,7 @@ namespace ThermoComfortNew.Data
                     Characteristics = "Мощност: 20 kW; КПД: 90%; Вместимост на бункера: 30 кг; Консумация на пелети: 1.5 - 4.5 кг/ч; Тегло: 170 кг",
                     Brand = "BURNIT",
                     CreatedOn = DateTime.Now,
-                    CategoryId = 4
+                    CategoryId = 3
                 },
                 new Product
                 {
@@ -290,7 +290,7 @@ namespace ThermoComfortNew.Data
                     Characteristics = "Мощност: 25 kW; КПД: 91%; Вместимост на бункера: 35 кг; Консумация на пелети: 1.8 - 5.0 кг/ч; Тегло: 180 кг",
                     Brand = "BURNIT",
                     CreatedOn = DateTime.Now,
-                    CategoryId = 4
+                    CategoryId = 3
                 },
                 new Product
                 {
@@ -303,7 +303,7 @@ namespace ThermoComfortNew.Data
                     Characteristics = "Мощност: 22 kW; КПД: 92%; Вместимост на бункера: 28 кг; Консумация на пелети: 1.4 - 4.2 кг/ч; Тегло: 160 кг",
                     Brand = "BURNIT",
                     CreatedOn = DateTime.Now,
-                    CategoryId = 4
+                    CategoryId = 3
                 }
             );
 

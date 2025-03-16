@@ -15,11 +15,13 @@ namespace ThermoComfort.Data.Models
             public ApplicationUser ApplicationUser { get; set; }
 
             [Display(Name = "Тел. номер")]
+            [Required(ErrorMessage = "Телефонният номер е задължителен.")]
+            [RegularExpression(@"^\+?\d{7,15}$", ErrorMessage = "Невалиден телефонен номер.")]
             public string PhoneNumber { get; set; }
 
             [Display(Name = "Адрес")]
             public string Address { get; set; }
-            [NotMapped]
+            
             [Display(Name = "Крайна цена")]
             public decimal TotalPrice { get; set; }
 

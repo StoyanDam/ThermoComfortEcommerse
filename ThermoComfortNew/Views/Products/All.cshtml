@@ -5,18 +5,68 @@
 }
 
 <h2 class="text-center">Всички продукти</h2>
-<form method="get" asp-action="All" class="mb-3">
+@* <form method="get" asp-action="All" class="mb-3">
     <div class="input-group">
         <input type="text" name="searchTerm" class="form-control" placeholder="Търсене по име..." value="@Context.Request.Query["searchTerm"]" />
         <button type="submit" class="btn btn-primary">Търси</button>
     </div>
 </form>
 <!-- Sorting Links -->
+<div class="form-group">
+    <label for="categoryId">Категория:</label>
+    <select id="categoryId" name="categoryId" class="form-control">
+        <option value="">Всички</option>
+        @if (ViewBag.Categories != null)
+        {
+            foreach (var category in ViewBag.Categories)
+            {
+                <option value="@category.CategoryID"
+                        selected="@(ViewBag.SelectedCategory == category.CategoryID ? "selected" : null)">
+                    @category.CategoryName <!-- Change 'DisplayName' to 'Name' or the correct property -->
+                </option>
+            }
+        }
+    </select>
+    <button type="submit" class="btn btn-success">Филтрирай</button>
+</div>
 
 <div class="mb-3 text-center">
     <a asp-action="All" asp-route-sortOrder="price_asc" class="btn btn-outline-secondary ">Сортирай по цена ↑</a>
     <a asp-action="All" asp-route-sortOrder="price_desc" class="btn btn-outline-secondary ">Сортирай по цена ↓</a>
+</div> *@
+<form method="get" asp-action="All" class="mb-3">
+    <div class="input-group mb-3">
+        <input type="text" name="searchTerm" class="form-control" placeholder="Търсене по име..." value="@Context.Request.Query["searchTerm"]" />
+        <button type="submit" class="btn btn-primary">Търси</button>
+    </div>
+
+    <div class="form-group">
+        <label for="categoryId">Категория:</label>
+        <div class="input-group">
+            <select id="categoryId" name="categoryId" class="form-control">
+                <option value="">Всички</option>
+                @if (ViewBag.Categories != null)
+                {
+                    foreach (var category in ViewBag.Categories)
+                    {
+                        <option value="@category.CategoryID"
+                                selected="@(ViewBag.SelectedCategory == category.CategoryID ? "selected" : null)">
+                            @category.CategoryName <!-- Ensure this matches your model -->
+                        </option>
+                    }
+                }
+            </select>
+            <button type="submit" class="btn btn-success">Филтрирай</button>
+        </div>
+    </div>
+</form>
+
+<!-- Sorting Links -->
+<div class="mb-3 text-center">
+    <a asp-action="All" asp-route-sortOrder="price_asc" class="btn btn-outline-secondary">Сортирай по цена ↑</a>
+    <a asp-action="All" asp-route-sortOrder="price_desc" class="btn btn-outline-secondary">Сортирай по цена ↓</a>
 </div>
+
 <div class="row">
     @foreach (var product in Model)
     {

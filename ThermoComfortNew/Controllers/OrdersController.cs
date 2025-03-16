@@ -87,6 +87,7 @@ namespace ThermoComfortNew.Controllers
         }
 
         // GET: Orders/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -108,6 +109,7 @@ namespace ThermoComfortNew.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ApplicationUserId,PhoneNumber,Address,TotalPrice,OrderDate,DeliveryDate")] Order order)
         {
             if (id != order.Id)

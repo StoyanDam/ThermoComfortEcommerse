@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ThermoComfortNew.Data;
 
@@ -11,9 +12,11 @@ using ThermoComfortNew.Data;
 namespace ThermoComfortNew.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250305074817_ProblemPriceAndImageSolved")]
+    partial class ProblemPriceAndImageSolved
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,9 +184,6 @@ namespace ThermoComfortNew.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
@@ -276,7 +276,7 @@ namespace ThermoComfortNew.Data.Migrations
                             Brand = "Mitsubishi",
                             CategoryId = 1,
                             Characteristics = " Вид Термопомпа: Сплит\r\nЗахранване: 220V\r\nХладилен Агент: R410a\r\nМощност kW: 10 - 12 kW\r\nРаботен режим: Само Отопление\r\nРаботна температура: Нискотемпературна до 65°C",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6392),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(7922),
                             Description = "Термопомпената система се състои от следните компоненти:\r\n\r\nвъншно тяло\r\nвътрешно тяло Hydrobox\r\nмодул за управление.",
                             ImageUrl = "termopompa1.jpg",
                             IsDeleted = false,
@@ -290,7 +290,7 @@ namespace ThermoComfortNew.Data.Migrations
                             Brand = "Daikin ",
                             CategoryId = 1,
                             Characteristics = " Обем в литри: 230 л.\r\nВид Термопомпа: Сплит\r\nЗахранване: 220V\r\nХладилен Агент: R32\r\nМощност kW: 4 - 9 kW\r\nРаботен режим: Отопление и охлаждане\r\nРаботна температура: Нискотемпературна до 65°C",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6405),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(7936),
                             Description = "Нискотемпературна термопомпа + 230 литров бойлер\r\n› Комбиниран вътрешен модул с вграден неръждаем бойлер 180 или 230 литра и термопомпа за лесен монтаж\r\n› Всички хидравлични компоненти са включени - не са необходими външни компоненти\r\n› Електрическите и хидравлични компоненти са в предната част за лесен достъп\r\n› Компактни размери - отпечатък 595х625 mm\r\n› Вграден помощен нагревател 6 или 9 kW\r\n› Работа в термопомпен режим до -25°C​\r\n› Съвместима с Onecta и гласов контрол​",
                             ImageUrl = "termopompa2.jpg",
                             IsDeleted = false,
@@ -304,7 +304,7 @@ namespace ThermoComfortNew.Data.Migrations
                             Brand = "Immergas ",
                             CategoryId = 1,
                             Characteristics = " Вид Термопомпа: Сплит\r\nЗахранване: 380V\r\nХладилен Агент: R410a\r\nМощност kW: 13 - 16 kW\r\nРаботен режим: Отопление и охлаждане\r\nЕнергиен клас отопление: A+++\r\nЕнергиен клас охлаждане: A+",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6415),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(7946),
                             Description = "ИДЕАЛНА ЗАЩИТА ОТ ЗАМРЪЗВАНЕ Хидравличният модул е напълно защитен от замръзване, поради разположението му вътре в жилището;\r\nКОМПАКТНО РЕШЕНИЕ Обединява в отделния хидравличен модул основните компоненти на хидравличната инсталация, а именно: комплект нагреватели за инсталацията (опция), разширителен съд, 3-пътен превключващ вентил за БГВ, хидравлична група с циркулационна помпа и комплект нагреватели за системата (опция) - до 2 - за версии 12, 14 и 16.\r\nЗАПАЗВАНЕ НА ЕСТЕТИКАТА Външното тяло е по-компактно, което осигурява по-голяма гъвкавост при инсталация на фасадите извън сградата или на тераса.\r\nЛЕСЕН МОНТАЖ Професионалистът може да използва MAGIS PRO V2 като автономно решение за отопление, охлаждане и битова гореща вода или като решениe за интегриране в инсталационни табла и инсталационни табла за вграждане в стена.",
                             ImageUrl = "termopompa3.jpg",
                             IsDeleted = false,
@@ -318,7 +318,7 @@ namespace ThermoComfortNew.Data.Migrations
                             Brand = "Samsung ",
                             CategoryId = 1,
                             Characteristics = " Обем в литри: 260 л.\r\nВид Термопомпа: Сплит с вграден водосъдържател\r\nЗахранване: 380V\r\nХладилен Агент: R32\r\nМощност kW: 13 - 16 kW\r\nРаботен режим: Отопление и охлаждане\r\nРаботна температура: Нискотемпературна до 65°C",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6425),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(7957),
                             Description = "ClimateHub Mono\r\n– ​Интегрирано решение за отопление и битова гореща вода.\r\n– ​Компактен размер с голям бойлер за битова гореща вода (200 L и 260 L).\r\n– ​Интуитивен, сензорен контролер с цветен екран на няколко езика.\r\n– ​Проследяване на консумираната енергия чрез сензорен контролер.\r\n– ​Безпроблемно обслужване през сервизен прозорец в предната част.\r\n– ​Готовност за включване към фотоволтаици и Smart Grid.\r\n– ​2-зоново управление, подходящо за подово и радиаторно отопление.\r\n– ​Клас на SCOP A+++.\r\n– ​SmartThings система, съвместима с Wi-Fi комплект, предлаган като опция.\r\n– ​За осигуряване на минимална температура на водата е включен резервен нагревател",
                             ImageUrl = "termopompa-4.jpg",
                             IsDeleted = false,
@@ -332,7 +332,7 @@ namespace ThermoComfortNew.Data.Migrations
                             Brand = "Toshiba  ",
                             CategoryId = 1,
                             Characteristics = "Вид Термопомпа: Сплит\r\nТип инвертор: Инвертор\r\nЗахранване: 380V\r\nХладилен Агент: R32\r\nМощност kW: 4 - 9 kW\r\nРаботен режим: Отопление и охлаждане\r\nЕнергиен клас отопление: A+++\r\nНиво на шум: 26 - 30dB\r\nWi-Fi: Да\r\nЦвят: Бял",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6435),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(7967),
                             Description = "Иновативна гама термопомпи. Компактен, ефективен и тих хиромодул. А+++ енергиен клас отопление. Серия ESTIA R32. Опция за свързване с WiFi. Удобни дистанционни управления. Произход Полша.",
                             ImageUrl = "termopompa5.jpg",
                             IsDeleted = false,
@@ -346,7 +346,7 @@ namespace ThermoComfortNew.Data.Migrations
                             Brand = "Immergas ",
                             CategoryId = 2,
                             Characteristics = "Максимална термична мощност\r\n(за БГВ) - 34.9 kW\r\n(за отопление) - 32.7 kW\r\nМинимална термична мощност - 4.0 kW\r\nМаксимална топлинна мощност\r\n(за БГВ) - 34.2 kW\r\n(за отопление) - 32.0 kW\r\nМинимална топлинна мощност - 3.9 kW\r\nЕфективност при:\r\nноминална мощност 80/60°C  -  97.8 %\r\n30% натоварване 80/60°C  -  103.2 %\r\nноминална мощност 40/30°C  -  106.2 %\r\n30% натоварване 40/30°C  -  108.2 %\r\nДебит на газ при горелката (метан) макс./мин. - 3.69 / 0.43 m³/h",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6445),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(7977),
                             Description = "Повече комфорт със стенния двуконтурен комбиниран кондензен котел VICTRIX. Газовите котли на Immergas отговарят на новите Европейски Директиви за използване на енергия, фокусирани върху кондензната технология. Произведени в Италия. Лесни за инсталация във всяко пространство. Ново поколение котли подходящи за нови и стари вече изградени отоплителни инсталации. Всички модели притежават модулационна циркулационна помпа с нисък разход, за достигане на висока енергийна ефективност. ",
                             ImageUrl = "gazov-kotel1.jpg",
                             IsDeleted = false,
@@ -360,7 +360,7 @@ namespace ThermoComfortNew.Data.Migrations
                             Brand = "Immergas",
                             CategoryId = 2,
                             Characteristics = "Термична мощност: Макс. (режим БГВ): 28.7 kW; Макс. (режим отопление): 24.5 kW; Мин.: 4.5 kW",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6455),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(7988),
                             Description = "Стенен кондензационен котел за отопление и производство на БГВ с външен обемен бойлер. Нов дизайн, ефективност и технология Hydrogen Ready.",
                             ImageUrl = "gazov-kotel2.jpg",
                             IsDeleted = false,
@@ -374,7 +374,7 @@ namespace ThermoComfortNew.Data.Migrations
                             Brand = "Immergas",
                             CategoryId = 2,
                             Characteristics = "Термична мощност: Макс. (режим БГВ): 34.8 kW; Макс. (режим отопление): 30.5 kW; Мин.: 4.5 kW",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6465),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(7998),
                             Description = "Стенен кондензационен котел за отопление и производство на БГВ с външен обемен бойлер. Нов дизайн, ефективност и технология Hydrogen Ready.",
                             ImageUrl = "gazov-kotel3.jpg",
                             IsDeleted = false,
@@ -388,7 +388,7 @@ namespace ThermoComfortNew.Data.Migrations
                             Brand = "Bosch",
                             CategoryId = 2,
                             Characteristics = "Енергиен клас	\r\nA++/A++\r\n\r\nГаранция	\r\nдо 24 месеца\r\n\r\nМаксимална ел. консумация	\r\n94 W\r\n\r\nМощност при 40/30°C-kW	\r\n4,1 - 25,4\r\n\r\nМощност при 50/30°C-kW	\r\n3,3 - 25,2\r\n\r\nМощност при 80/30°C-kW	\r\n3,7 - 24,1\r\n\r\nПроизводител	\r\nBosch",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6475),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(8008),
                             Description = "Bosch Condens 2500W WBC 28-1 DCE 23 - двуконтурен газов кондензен котел с мощност 3,7-28KW. Работи на принципа на  т. нар. кондензна техника – използва  както топлината, която възниква като измерима температура при процес на горене, така и  топлината от кондензацията на водните пари в отработените газове. ",
                             ImageUrl = "gazov-kotel4.png",
                             IsDeleted = false,
@@ -402,7 +402,7 @@ namespace ThermoComfortNew.Data.Migrations
                             Brand = "Viessmann",
                             CategoryId = 2,
                             Characteristics = "Стенен кондензен газов котел Viessmann Vitodens 100-W от 19 до 35 kW, едноконтурен;\r\nКоефициент на ефективност до 98% (Hs)/109% (Hi);\r\nИнтегриран мембранен разширитвисокоефективна работа с пълноценно използване на топлината от конденза;\r\nВентилатор с регулиране на оборотите за тиха и енергоспестяваща работа;\r\nМодулираща цилидрична горелка MatriX;\r\nВисокоефективна помпа;\r\nУправление по константна или по външна температура;\r\nНов осветен LCD-Touch дисплей за лесно и комфортно обслужване;",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6503),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(8031),
                             Description = "Газов котел Viessmann Vitodens 100-W B1HC301 отговаря напълно на изискванията за енергийна ефективност заложени в Програмата за кредитиране на енергийната ефективност в дома. Vitodens 100-W е високоефективен стенен газов кондензен котел на изключително атрактивна цена и с безкомпромисното качество.",
                             ImageUrl = "gazov-kotel5.jpg",
                             IsDeleted = false,
@@ -414,9 +414,9 @@ namespace ThermoComfortNew.Data.Migrations
                             ProductId = 11,
                             Availability = 15,
                             Brand = "Daikin",
-                            CategoryId = 4,
+                            CategoryId = 3,
                             Characteristics = "Мощност охлаждане: 2.5 kW; Мощност отопление: 2.8 kW; Енергиен клас: A++; Ниво на шум: 21 dB",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6513),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(8041),
                             Description = "Енергийно ефективен стенен климатик с модерен дизайн и тиха работа. Подходящ за помещения до 25 кв.м.",
                             ImageUrl = "klimatik1.jpg",
                             IsDeleted = false,
@@ -428,9 +428,9 @@ namespace ThermoComfortNew.Data.Migrations
                             ProductId = 12,
                             Availability = 10,
                             Brand = "Mitsubishi Electric",
-                            CategoryId = 4,
+                            CategoryId = 3,
                             Characteristics = "Мощност охлаждане: 2.5 kW; Мощност отопление: 3.15 kW; Енергиен клас: A+; Ниво на шум: 22 dB",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6523),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(8051),
                             Description = "Компактен и стилен стенен климатик с висока енергийна ефективност и тих режим на работа.",
                             ImageUrl = "klimatik2.jpeg",
                             IsDeleted = false,
@@ -442,9 +442,9 @@ namespace ThermoComfortNew.Data.Migrations
                             ProductId = 13,
                             Availability = 12,
                             Brand = "Fujitsu",
-                            CategoryId = 4,
+                            CategoryId = 3,
                             Characteristics = "Мощност охлаждане: 2.5 kW; Мощност отопление: 3.2 kW; Енергиен клас: A++; Ниво на шум: 20 dB",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6532),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(8061),
                             Description = "Високоефективен стенен климатик с компактен дизайн и ниско ниво на шум. Идеален за малки помещения.",
                             ImageUrl = "klimatik3.webp",
                             IsDeleted = false,
@@ -456,9 +456,9 @@ namespace ThermoComfortNew.Data.Migrations
                             ProductId = 14,
                             Availability = 8,
                             Brand = "Toshiba",
-                            CategoryId = 4,
+                            CategoryId = 3,
                             Characteristics = "Мощност охлаждане: 2.5 kW; Мощност отопление: 3.2 kW; Енергиен клас: A++; Ниво на шум: 21 dB",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6542),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(8070),
                             Description = "Елегантен стенен климатик с висока енергийна ефективност и пречистване на въздуха. Подходящ за средни помещения.",
                             ImageUrl = "klimatik4.png",
                             IsDeleted = false,
@@ -470,9 +470,9 @@ namespace ThermoComfortNew.Data.Migrations
                             ProductId = 15,
                             Availability = 20,
                             Brand = "Gree",
-                            CategoryId = 4,
+                            CategoryId = 3,
                             Characteristics = "Мощност охлаждане: 2.6 kW; Мощност отопление: 2.9 kW; Енергиен клас: A+; Ниво на шум: 22 dB",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6552),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(8081),
                             Description = "Надежден стенен климатик с инверторна технология и ниско ниво на шум. Идеален за спални и малки офиси.",
                             ImageUrl = "klimatik5.png",
                             IsDeleted = false,
@@ -484,9 +484,9 @@ namespace ThermoComfortNew.Data.Migrations
                             ProductId = 16,
                             Availability = 5,
                             Brand = "MIA",
-                            CategoryId = 3,
+                            CategoryId = 4,
                             Characteristics = "Мощност: 15 kW; КПД: 91%; Вместимост на бункера: 20 кг; Консумация на пелети: 1.1 - 3.3 кг/ч; Тегло: 150 кг",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6561),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(8090),
                             Description = "Автоматична камина на пелети с водна риза, оборудвана с електронна циркулационна помпа, разширителен съд и седмичен програматор.",
                             ImageUrl = "kamina1.jpg",
                             IsDeleted = false,
@@ -498,9 +498,9 @@ namespace ThermoComfortNew.Data.Migrations
                             ProductId = 17,
                             Availability = 8,
                             Brand = "DI CALORE",
-                            CategoryId = 3,
+                            CategoryId = 4,
                             Characteristics = "Мощност: 18 kW; КПД: 92%; Вместимост на бункера: 25 кг; Консумация на пелети: 1.2 - 3.8 кг/ч; Тегло: 160 кг",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6571),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(8100),
                             Description = "Камина на пелети с водна риза, произведена с италиански компоненти, осигуряваща висока ефективност и надеждност.",
                             ImageUrl = "kamina2.png",
                             IsDeleted = false,
@@ -512,9 +512,9 @@ namespace ThermoComfortNew.Data.Migrations
                             ProductId = 18,
                             Availability = 10,
                             Brand = "BURNIT",
-                            CategoryId = 3,
+                            CategoryId = 4,
                             Characteristics = "Мощност: 20 kW; КПД: 90%; Вместимост на бункера: 30 кг; Консумация на пелети: 1.5 - 4.5 кг/ч; Тегло: 170 кг",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6581),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(8110),
                             Description = "Пелетна камина с водна риза, оборудвана с вградена циркулационна помпа, разширителен съд и интелигентно управление.",
                             ImageUrl = "kamina3.jpg",
                             IsDeleted = false,
@@ -526,9 +526,9 @@ namespace ThermoComfortNew.Data.Migrations
                             ProductId = 19,
                             Availability = 7,
                             Brand = "BURNIT",
-                            CategoryId = 3,
+                            CategoryId = 4,
                             Characteristics = "Мощност: 25 kW; КПД: 91%; Вместимост на бункера: 35 кг; Консумация на пелети: 1.8 - 5.0 кг/ч; Тегло: 180 кг",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6590),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(8119),
                             Description = "Ефективна камина на пелети с водна риза, подходяща за отопление на средни и големи помещения.",
                             ImageUrl = "kamina4.png",
                             IsDeleted = false,
@@ -540,9 +540,9 @@ namespace ThermoComfortNew.Data.Migrations
                             ProductId = 20,
                             Availability = 6,
                             Brand = "BURNIT",
-                            CategoryId = 3,
+                            CategoryId = 4,
                             Characteristics = "Мощност: 22 kW; КПД: 92%; Вместимост на бункера: 28 кг; Консумация на пелети: 1.4 - 4.2 кг/ч; Тегло: 160 кг",
-                            CreatedOn = new DateTime(2025, 3, 14, 9, 38, 31, 761, DateTimeKind.Local).AddTicks(6601),
+                            CreatedOn = new DateTime(2025, 3, 5, 9, 48, 15, 903, DateTimeKind.Local).AddTicks(8129),
                             Description = "Стилна камина на пелети с водна риза, осигуряваща ефективно отопление и лесно управление.",
                             ImageUrl = "kamina5.png",
                             IsDeleted = false,
