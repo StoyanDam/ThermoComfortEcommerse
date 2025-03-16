@@ -1,4 +1,4 @@
-﻿@model ThermoComfort.Data.Models.Product
+﻿@* @model ThermoComfort.Data.Models.Product
 
 @{
     ViewData["Title"] = "Изтрий продукт";
@@ -61,12 +61,6 @@
             @Html.DisplayFor(model => model.CreatedOn)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Category)
         </dt>
         <dd class = "col-sm-10">
@@ -79,4 +73,43 @@
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>
+</div>
+ *@
+ @model ThermoComfort.Data.Models.Product
+
+@{
+    ViewData["Title"] = "Изтрий продукт";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="p-4 bg-white rounded shadow">
+                <h2 class="text-danger text-center">⚠️ Внимание: Изтриване на продукт</h2>
+                <p class="text-center">Сигурни ли сте, че искате да изтриете този продукт? Това действие не може да бъде отменено.</p>
+                <hr />
+
+                <!-- Product Details -->
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <img src="@Url.Content("~/images/" + Model.ImageUrl)" alt="Product Image" class="img-fluid rounded">
+                    </div>
+                    <div class="col-md-8">
+                        <h4 class="text-primary">@Model.ProductName</h4>
+                        <p><strong>Цена:</strong> @Model.Price лв</p>
+                        <p><strong>Наличност:</strong> @Model.Availability</p>
+                        <p><strong>Описание:</strong> @Model.Description</p>
+                        <p><strong>Марка:</strong> @Model.Brand</p>
+                        <p><strong>Категория:</strong> @Model.Category.CategoryName</p>
+                    </div>
+                </div>
+
+                <form asp-action="Delete" method="post" class="mt-4 text-center">
+                    <input type="hidden" asp-for="ProductId" />
+                    <button type="submit" class="btn btn-danger">🗑️ Изтрий</button>
+                    <a asp-action="Index" class="btn btn-outline-secondary">Отказ</a>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

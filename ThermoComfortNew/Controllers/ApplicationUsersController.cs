@@ -36,7 +36,6 @@ namespace ThermoComfortNew.Controllers
 
             var user = await _context.Users
                 .Include(u => u.Orders)
-                .Include(u => u.Reviews)
                 .FirstOrDefaultAsync(u => u.Id == id);
 
             if (user == null)

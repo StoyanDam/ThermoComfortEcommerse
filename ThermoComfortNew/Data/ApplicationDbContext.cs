@@ -16,7 +16,6 @@ namespace ThermoComfortNew.Data
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Review> Reviews { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
@@ -25,13 +24,7 @@ namespace ThermoComfortNew.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-           
-
-
-
-
-
+      
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Category>().HasData(

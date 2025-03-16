@@ -26,7 +26,7 @@ namespace ThermoComfort.Data.Models
         public decimal Price { get; set; }
 
         [Display(Name = "Наличност")]
-        [Range(0, int.MaxValue, ErrorMessage = "Availability must be a non-negative number.")]
+        [Range(0, int.MaxValue, ErrorMessage = "Наличността трябва да е положително число.")]
         public int Availability { get; set; }
 
         [Display(Name = "Характеристики")]
@@ -37,13 +37,9 @@ namespace ThermoComfort.Data.Models
 
         public DateTime CreatedOn { get; set; } = DateTime.Now;
 
-        public bool IsDeleted { get; set; } = false;
-
         [Display(Name = "Категория")]
         [ForeignKey("Category")]
         public int CategoryId { get; set; }
-
-        public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
 
         public ICollection<OrderProduct> OrderProducts { get; set; } = new HashSet<OrderProduct>();
         public virtual Category Category { get; set; }

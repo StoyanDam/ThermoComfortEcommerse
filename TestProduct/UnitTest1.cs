@@ -22,7 +22,6 @@ public class ProductTests
             Characteristics = "Test Characteristics",
             Brand = "Test Brand",
             CreatedOn = DateTime.Now,
-            IsDeleted = false,
             CategoryId = 2
         };
 
@@ -35,7 +34,6 @@ public class ProductTests
         Assert.AreEqual(10, product.Availability);
         Assert.AreEqual("Test Characteristics", product.Characteristics);
         Assert.AreEqual("Test Brand", product.Brand);
-        Assert.False(product.IsDeleted);
         Assert.AreEqual(2, product.CategoryId);
     }
 

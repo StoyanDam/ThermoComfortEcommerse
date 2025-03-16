@@ -300,7 +300,6 @@ namespace ThermoComfortNew.Controllers
                     Brand = model.Brand,
                     Price = model.Price,
                     CreatedOn = model.CreatedOn,
-                    IsDeleted = model.IsDeleted,
                     CategoryId = model.CategoryId,
                     ImageUrl = uniqueFileName
                 };
@@ -380,10 +379,48 @@ namespace ThermoComfortNew.Controllers
             return uniqueFileName;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefaultAsync(m => m.ProductId == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
+
+        // POST: Products/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product != null)
+            {
+                _context.Products.Remove(product);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool ProductExists(int id)
+        {
+            return _context.Products.Any(e => e.ProductId == id);
+        }
+
         public async Task<IActionResult> All(int? categoryId, string sortOrder, string searchTerm)
         {
-            var products = _context.Products
-                .Where(p => !p.IsDeleted);
+            IQueryable<Product> products = _context.Products.AsQueryable(); // Ensure IQueryable
 
             // Fetch categories for dropdown
             ViewBag.Categories = await _context.Categories.ToListAsync();
@@ -402,18 +439,12 @@ namespace ThermoComfortNew.Controllers
             }
 
             // Sorting
-            switch (sortOrder)
+            products = sortOrder switch
             {
-                case "price_asc":
-                    products = products.OrderBy(p => p.Price);
-                    break;
-                case "price_desc":
-                    products = products.OrderByDescending(p => p.Price);
-                    break;
-                default:
-                    products = products.OrderByDescending(p => p.ProductName);
-                    break;
-            }
+                "price_asc" => products.OrderBy(p => p.Price),
+                "price_desc" => products.OrderByDescending(p => p.Price),
+                _ => products.OrderByDescending(p => p.ProductName)
+            };
 
             return View(await products.ToListAsync());
         }

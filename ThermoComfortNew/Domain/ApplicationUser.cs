@@ -17,7 +17,7 @@ namespace ThermoComfortNew.Domain
 
         [Display(Name = "Пълно име")]
         public string? FullName { get { return $"{FirstName} {LastName}"; } }
-        public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
+ 
         public ICollection<Order> Orders { get; set; } = new HashSet<Order>();
     }
 }

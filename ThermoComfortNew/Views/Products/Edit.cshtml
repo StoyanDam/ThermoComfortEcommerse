@@ -1,14 +1,13 @@
 ﻿@model ThermoComfortNew.Models.EditProductViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Промени продукт";
 }
 
-<h1>Edit</h1>
-
-<h4>Product</h4>
+<h1 class="text-center">Направи промяна на продукт</h1>
 <hr />
-<div class="row">
+<div class="row d-flex justify-content-center align-items-center form-holder">
+
     <div class="col-md-4">
         <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -54,14 +53,11 @@
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Запази" class="btn btn-primary" />
+                <a asp-controller="Products" asp-action="Index" type="button" class="btn btn-secondary">Назад</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

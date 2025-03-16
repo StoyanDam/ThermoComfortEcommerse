@@ -1,39 +1,12 @@
-﻿@model IEnumerable<ThermoComfort.Data.Models.Product>
+﻿
+@model IEnumerable<ThermoComfort.Data.Models.Product>
 
 @{
     ViewData["Title"] = "All Products";
 }
 
 <h2 class="text-center">Всички продукти</h2>
-@* <form method="get" asp-action="All" class="mb-3">
-    <div class="input-group">
-        <input type="text" name="searchTerm" class="form-control" placeholder="Търсене по име..." value="@Context.Request.Query["searchTerm"]" />
-        <button type="submit" class="btn btn-primary">Търси</button>
-    </div>
-</form>
-<!-- Sorting Links -->
-<div class="form-group">
-    <label for="categoryId">Категория:</label>
-    <select id="categoryId" name="categoryId" class="form-control">
-        <option value="">Всички</option>
-        @if (ViewBag.Categories != null)
-        {
-            foreach (var category in ViewBag.Categories)
-            {
-                <option value="@category.CategoryID"
-                        selected="@(ViewBag.SelectedCategory == category.CategoryID ? "selected" : null)">
-                    @category.CategoryName <!-- Change 'DisplayName' to 'Name' or the correct property -->
-                </option>
-            }
-        }
-    </select>
-    <button type="submit" class="btn btn-success">Филтрирай</button>
-</div>
 
-<div class="mb-3 text-center">
-    <a asp-action="All" asp-route-sortOrder="price_asc" class="btn btn-outline-secondary ">Сортирай по цена ↑</a>
-    <a asp-action="All" asp-route-sortOrder="price_desc" class="btn btn-outline-secondary ">Сортирай по цена ↓</a>
-</div> *@
 <form method="get" asp-action="All" class="mb-3">
     <div class="input-group mb-3">
         <input type="text" name="searchTerm" class="form-control" placeholder="Търсене по име..." value="@Context.Request.Query["searchTerm"]" />
@@ -51,7 +24,7 @@
                     {
                         <option value="@category.CategoryID"
                                 selected="@(ViewBag.SelectedCategory == category.CategoryID ? "selected" : null)">
-                            @category.CategoryName <!-- Ensure this matches your model -->
+                            @category.CategoryName
                         </option>
                     }
                 }
@@ -76,17 +49,21 @@
 
                 <div class="card-body">
                     <h5 class="card-title">@product.ProductName</h5>
-                    <p class="card-text text-muted">@product.Description.Substring(0, Math.Min(100, product.Description.Length))...</p>
+                    <p class="card-text text-muted">
+                        @(product.Description.Length > 100 ? product.Description.Substring(0, 100) + "..." : product.Description)
+                    </p>
                     <p><strong>Цена:</strong> @product.Price лв.</p>
                     <p><strong>Наличност:</strong> @product.Availability бр.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-primary">Детайли</a>
+
+                    <div class="d-flex flex-column">
+                        <a asp-action="Details" asp-route-id="@product.ProductId" class="btn btn-primary mb-2">Детайли</a>
+
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <form method="post" asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.ProductId">
-                                <input type="number" name="quantity" value="1" min="1" class="form-control mb-2" />
-                            <button type="submit" class="btn btn-success">Добави в количката</button>
-                        </form>
+                            <form method="post" asp-controller="Cart" asp-action="AddToCart" asp-route-productId="@product.ProductId" class="d-flex">
+                                <input type="number" name="quantity" value="1" min="1" class="form-control text-center me-2" style="max-width: 70px;">
+                                <button type="submit" class="btn btn-success flex-grow-1">Добави в количката</button>
+                            </form>
                         }
                     </div>
                 </div>

@@ -67,15 +67,15 @@ else
 </head>
 
 @{
-    ViewData["Title"] = "Checkout";
+    ViewData["Title"] = "Завърши поръчка";
 }
 
-<h2>Checkout</h2>
+<h2>Завърши поръчката си</h2>
 
 @if (Model.CartItems.Any())
 {
     <div id="cart">
-        <div id="cart-header">Your Cart</div>
+        <div id="cart-header">Вашите продукти в количката</div>
 
         @foreach (var item in Model.CartItems)
         {
@@ -98,7 +98,6 @@ else
 
         <div id="total">
             <strong>Total Price:</strong> @Model.TotalPrice.ToString("C")
-            <p>Debug Total Price: @Model.TotalPrice</p> <!-- Debugging -->
         </div>
 
         <h3>Детайли за поръчката</h3>
@@ -115,7 +114,7 @@ else
                 <input asp-for="PhoneNumber" class="form-control" required placeholder="Въведете телефонен номер" />
             </div>
 
-            <button type="submit" class="checkout-btn">Place Order</button>
+            <button type="submit" class="checkout-btn">Потвърди</button>
         </form>
     </div>
 }
