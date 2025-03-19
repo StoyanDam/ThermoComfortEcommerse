@@ -199,3 +199,7 @@ body {
 .form-holder{
     padding-block: 50px;
 }
+.custom-header {
+    background-color: #696969; /* Light gray */
+    color: whitesmoke; /* Ensures readability */
+}

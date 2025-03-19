@@ -1,27 +1,59 @@
-﻿@model ThermoComfortNew.Domain.ApplicationUser
+﻿
+ @model ThermoComfortNew.Domain.ApplicationUser
 
 @{
     ViewData["Title"] = "Изтрий потребител";
 }
 
-<h2>@ViewData["Title"]</h2>
+<div class="container mt-4">
+    <div class="card shadow-sm border-danger">
+        <div class="card-header bg-danger text-white">
+            <h3 class="mb-0"><i class="fas fa-user-times"></i> @ViewData["Title"]</h3>
+        </div>
+        <div class="card-body">
+            <h5 class="text-danger">Сигурни ли сте, че искате да изтриете този потребител?</h5>
+            <hr />
 
-<h3>Сигурни ли сте, че искате да изтриете този потребител?</h3>
-<div>
-    <dl class="row">
-        <dt class="col-sm-2">Пълно име</dt>
-        <dd class="col-sm-10">@Model.FullName</dd>
+            <div class="row">
+                <div class="col-md-6">
+                    <strong>Пълно име:</strong>
+                </div>
+                <div class="col-md-6">
+                    @Model.FullName
+                </div>
+            </div>
 
-        <dt class="col-sm-2">Имейл</dt>
-        <dd class="col-sm-10">@Model.Email</dd>
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <strong>Имейл:</strong>
+                </div>
+                <div class="col-md-6">
+                    @Model.Email
+                </div>
+            </div>
 
-        <dt class="col-sm-2">Телефон</dt>
-        <dd class="col-sm-10">@Model.PhoneNumber</dd>
-    </dl>
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <strong>Телефон:</strong>
+                </div>
+                <div class="col-md-6">
+                    @Model.PhoneNumber
+                </div>
+            </div>
+
+            <hr />
+            <form method="post" asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-danger me-2">
+                        <i class="fas fa-trash-alt"></i> Изтрий
+                    </button>
+                    <a asp-action="All" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Назад към списъка
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
-
-<form method="post"  asp-action="Delete" >
-    <input type="hidden" asp-for="Id" />
-    <input type="submit" value="Delete" class="btn btn-danger" />
-    <a asp-action="All" class="btn btn-secondary">Назад към списъка</a>
-</form>

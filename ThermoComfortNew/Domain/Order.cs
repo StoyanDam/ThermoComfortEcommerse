@@ -16,9 +16,9 @@ namespace ThermoComfort.Data.Models
 
             [Display(Name = "Тел. номер")]
             [Required(ErrorMessage = "Телефонният номер е задължителен.")]
-            [RegularExpression(@"^\+?\d{7,15}$", ErrorMessage = "Невалиден телефонен номер.")]
+            [RegularExpression(@"^0\d{9}$", ErrorMessage = "Телефонният номер трябва да започва с 0 и да съдържа точно 10 цифри.")]
             public string PhoneNumber { get; set; }
-
+    
             [Display(Name = "Адрес")]
             public string Address { get; set; }
             

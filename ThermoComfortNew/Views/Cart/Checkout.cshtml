@@ -70,7 +70,7 @@ else
     ViewData["Title"] = "Завърши поръчка";
 }
 
-<h2>Завърши поръчката си</h2>
+<h2 class="text-center">Завърши поръчката си</h2>
 
 @if (Model.CartItems.Any())
 {
@@ -91,31 +91,37 @@ else
                 <div class="product-details">
                     <div class="product-title">@item.Product.ProductName</div>
                     <div class="product-price">@item.Product.Price.ToString("C")</div>
-                    <div class="product-duration">Quantity: @item.Quantity</div>
+                    <div class="product-duration">Количество: @item.Quantity</div>
                 </div>
             </div>
         }
 
         <div id="total">
-            <strong>Total Price:</strong> @Model.TotalPrice.ToString("C")
+            <strong>Крайна цена:</strong> @Model.TotalPrice.ToString("C")
         </div>
 
         <h3>Детайли за поръчката</h3>
         <form asp-action="Checkout" method="post" class="checkout-form">
-            <input type="hidden" asp-for="TotalPrice" /> <!-- Ensure TotalPrice is sent -->
+            <input type="hidden" asp-for="TotalPrice" />
 
             <div class="form-group">
-                <label for="Address">Адрес</label>
+                <label asp-for="Address"></label>
                 <textarea asp-for="Address" class="form-control" required placeholder="Въведете адрес"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label for="PhoneNumber">Телефонен номер</label>
-                <input asp-for="PhoneNumber" class="form-control" required placeholder="Въведете телефонен номер" />
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" class="form-control" required placeholder="Въведете телефонен номер"
+                       type="tel" pattern="0\d{9}" title="Телефонният номер трябва да започва с 0 и да съдържа точно 10 цифри." />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
 
             <button type="submit" class="checkout-btn">Потвърди</button>
         </form>
+
+
+
     </div>
 }
 else

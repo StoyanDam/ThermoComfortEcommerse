@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ThermoComfortNew.Domain.Category>
+﻿@* @model IEnumerable<ThermoComfortNew.Domain.Category>
 
 @{
     ViewData["Title"] = "Index";
@@ -39,3 +39,55 @@
 }
     </tbody>
 </table>
+ *@
+@model IEnumerable<ThermoComfortNew.Domain.Category>
+
+@{
+    ViewData["Title"] = "Категории";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="mb-3 text-dark"><i class="bi bi-list"></i> Категории</h2>
+        <a asp-action="Create" class="btn btn-success"><i class="bi bi-plus-lg"></i> Добави категория</a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body ">
+            <table class="table table-hover table-bordered">
+                <thead class="custom-header">
+                    <tr>
+                        <th>Категория</th>
+                        <th>Описание</th>
+                        <th class="text-center">Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold">@Html.DisplayFor(modelItem => item.CategoryName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center gap-2">
+                                    <a asp-action="Edit" asp-route-id="@item.CategoryID" class="btn btn-secondary btn-sm">
+                                        <i class="bi bi-pencil-square"></i> Редактирай
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.CategoryID" class="btn btn-danger btn-sm">
+                                        <i class="bi bi-trash"></i> Изтрий
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

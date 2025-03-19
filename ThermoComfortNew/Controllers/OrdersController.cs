@@ -95,14 +95,26 @@ namespace ThermoComfortNew.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Orders.FindAsync(id);
+            var order = await _context.Orders
+                .Include(o => o.ApplicationUser) // Include user details
+                .FirstOrDefaultAsync(o => o.Id == id);
+
             if (order == null)
             {
                 return NotFound();
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", order.ApplicationUserId);
+
+            // Populate the dropdown with full names
+            ViewBag.ApplicationUserId = new SelectList(
+                _context.Users.Select(u => new { u.Id, FullName = u.FirstName + " " + u.LastName }),
+                "Id",
+                "FullName",
+                order.ApplicationUserId
+            );
+
             return View(order);
         }
+
 
         // POST: Orders/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
