@@ -1,0 +1,74 @@
+﻿@* @{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout !=  null)
+    {
+        Layout = parentLayout.ToString();
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+
+
+<div class="justify-content-center">
+    <h2 class ="text-center"> Промени настройките на акаунта си</h2>
+    <hr />
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <partial name="_ManageNav" />
+        </div>
+        <div class="col-md-9">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}
+ *@
+@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
+    {
+        Layout = parentLayout.ToString();
+    }
+    else
+    {
+        Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    }
+}
+
+<div class="container py-4">
+    <!-- Page Heading -->
+    <h2 class="text-center text-dark fw-bold mb-4">
+        <i class="bi bi-gear-fill"></i> Промени настройките на акаунта си
+    </h2>
+
+    <div class="row justify-content-center">
+        <!-- Sidebar Navigation -->
+        <div class="col-md-4 col-lg-3">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title text-center fw-bold text-secondary">
+                        <i class="bi bi-person-circle"></i> Меню
+                    </h5>
+                    <hr />
+                    <partial name="_ManageNav" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="col-md-8 col-lg-7">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

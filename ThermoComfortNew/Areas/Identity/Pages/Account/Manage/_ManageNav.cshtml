@@ -1,0 +1,18 @@
+﻿@using ThermoComfortNew.Domain
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+@* <ul class="nav nav-pills flex-column">
+    <li class="nav-item"><a class="nav-link @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">Профил</a></li>
+    <li class="nav-item"><a class="nav-link @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">Парола</a></li>
+ </ul> *@
+
+<div class="d-flex flex-column">
+    <a class="btn btn-success mb-2 w-100 @ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">
+        👤 Профил
+    </a>
+    <a class="btn btn-success w-100 @ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">
+        🔒 Парола
+    </a>
+</div>

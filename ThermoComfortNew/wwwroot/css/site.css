@@ -1,9 +1,146 @@
 
-body {
+/*body {
     font-family: 'Poppins', sans-serif;
     background-color: #f8f9fa;
     margin: 0;
     padding: 0;
+}*/
+
+/* Navbar Styles */
+/*.navbar {
+    background-color: #2b7a2b !important;*/ /* Green theme */
+    /*padding: 10px 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff !important;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.1rem;
+}
+
+    .navbar-nav .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+    }*/
+
+/* Dropdown Styles */
+/*.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;*/ /* Hide the dropdown by default */
+    /*position: absolute;
+    top: 100%;*/ /* Position it below the parent */
+    /*left: 0;
+    background-color: #2b7a2b;
+    border: none;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;*/ /* Ensure it appears above other elements */
+/*}
+
+.dropdown:hover .dropdown-menu {
+    display: block;*/ /* Show the dropdown on hover */
+/*}
+
+.dropdown-menu li a {
+    color: #ffffff !important;
+    padding: 10px 15px;
+    transition: all 0.3s ease-in-out;
+    display: block;*/ /* Ensure links take up full width */
+/*}
+
+    .dropdown-menu li a:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 5px;
+    }*/
+
+/* Cart Icon */
+/*.nav-link i.fas {
+    font-size: 1.3rem;
+    color: #ffffff;
+}
+
+.badge.bg-danger {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    border-radius: 50%;
+}*/
+
+/* Footer Styles */
+/*.footer {
+    background-color: #2b7a2b;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+    .footer a {
+        color: #ffffff;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s ease-in-out;
+    }
+
+        .footer a:hover {
+            color: #c0e6c0;
+        }*/
+
+/* Responsive Design */
+/*@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center;
+    }
+
+        .navbar-nav .nav-item {
+            width: 100%;
+        }
+}
+.logo {
+    height: 50px;*/ /* Adjust as needed */
+    /*width: 50px;*/ /* Ensure it's a perfect circle */
+    /*border-radius: 50%;*/ /* Makes the image circular */
+    /*object-fit: cover;*/ /* Ensures the image fills the circle */
+    /*border: 2px solid white;*/ /* Optional: Adds a white border */
+    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);*/ /* Optional: Adds a slight shadow */
+/*}
+.product-image{
+    max-height: 354px;
+    max-width: 354px;
+}
+.form-holder{
+    padding-block: 50px;
+}
+.custom-header {
+    background-color: #696969;*/ /* Light gray */
+    /*color: whitesmoke;*/ /* Ensures readability */
+/*}*/
+
+/* Ensure the footer is always pushed to the bottom of the page */
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Main content should take up remaining space */
+.main-content {
+    flex: 1;
 }
 
 /* Navbar Styles */
@@ -82,8 +219,9 @@ body {
     color: #ffffff;
     text-align: center;
     padding: 20px 0;
-    margin-top: 20px;
     font-size: 1rem;
+    width: 100%;
+    margin-top: auto; /* Pushes footer down when content is short */
 }
 
     .footer a {
@@ -107,6 +245,8 @@ body {
             width: 100%;
         }
 }
+
+/* Logo Styling */
 .logo {
     height: 50px; /* Adjust as needed */
     width: 50px; /* Ensure it's a perfect circle */
@@ -115,13 +255,19 @@ body {
     border: 2px solid white; /* Optional: Adds a white border */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Adds a slight shadow */
 }
-.product-image{
+
+/* Product Image */
+.product-image {
     max-height: 354px;
     max-width: 354px;
 }
-.form-holder{
+
+/* Form Holder */
+.form-holder {
     padding-block: 50px;
 }
+
+/* Custom Header */
 .custom-header {
     background-color: #696969; /* Light gray */
     color: whitesmoke; /* Ensures readability */
