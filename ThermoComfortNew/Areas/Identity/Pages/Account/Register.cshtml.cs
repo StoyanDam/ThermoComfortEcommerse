@@ -71,6 +71,7 @@ namespace ThermoComfortNew.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Phone]
+            [RegularExpression(@"^0\d{9}$", ErrorMessage = "Телефонният номер трябва да започва с 0 и да съдържа точно 10 цифри.")]
             [Required(ErrorMessage = "Телефонният номер е задължителен.")]
             public string PhoneNumber { get; set; }
 
@@ -107,7 +108,7 @@ namespace ThermoComfortNew.Areas.Identity.Pages.Account
                     UserName = Input.NickName,
                     Email = Input.Email,
                     PhoneNumber = Input.PhoneNumber
-                };//CreateUser();
+                };
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
@@ -115,7 +116,7 @@ namespace ThermoComfortNew.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("Потребителят създаде нов акаунт с парола.");
 
-                    //var userId = await _userManager.GetUserIdAsync(user);
+                   
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(

@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" href="~/css/productsCrud.css" asp-append-version="true" />
 </head>
-<a asp-controller="Products" asp-action="Create" type="button" class="btn btn-primary">Създай нов</a>
+<a asp-controller="Products" asp-action="Create" type="button" class="btn btn-success">Създай нов</a>
 <div class="table-container">
     <table class="table">
         <thead>
@@ -23,7 +23,7 @@
                     <td>
                         <div class="action-buttons">
                             <a asp-action="Edit" asp-route-id="@item.ProductId" class="btn btn-secondary">Промени</a>
-                            <a asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-success">Детайли</a>
+                            <a asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-info">Детайли</a>
                             <a asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-danger">Изтрий</a>
                         </div>
                     </td>

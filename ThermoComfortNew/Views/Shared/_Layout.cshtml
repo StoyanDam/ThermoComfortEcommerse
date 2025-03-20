@@ -31,9 +31,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начална страница</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Контакти</a>
-                        </li>
+                     
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="All">Всички продукти</a>
                         </li>
@@ -52,13 +50,15 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" asp-controller="Products" asp-action="Index">Продукти</a></li>
-                                    <li><a class="dropdown-item" asp-controller="ApplicationUsers" asp-action="Create">Добави потребител</a></li>
                                     <li><a class="dropdown-item" asp-controller="ApplicationUsers" asp-action="All">Потребители</a></li>
                                     <li><a class="dropdown-item" asp-controller="Categories" asp-action="Index">Категории</a></li>
                                   
                                 </ul>
                             </li>
                         }
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Контакти</a>
+                        </li>
                     </ul>
 
                     @if (User.Identity.IsAuthenticated)

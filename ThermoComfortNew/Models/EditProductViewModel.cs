@@ -20,6 +20,7 @@ namespace ThermoComfortNew.Models
         [Display(Name = "Цена")]
         public decimal Price { get; set; }
 
+        [Range(0, int.MaxValue, ErrorMessage = "Наличността не може да е отрицателно число.")]
         [Display(Name = "Наличност")]
         public int Availability { get; set; }
 

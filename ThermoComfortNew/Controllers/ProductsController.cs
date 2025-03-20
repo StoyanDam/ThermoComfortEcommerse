@@ -277,6 +277,7 @@ namespace ThermoComfortNew.Controllers
             return View(product);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryID", "CategoryName");
@@ -285,8 +286,15 @@ namespace ThermoComfortNew.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(ProductCreateViewModel model)
         {
+            // Ensure Availability is not negative
+            if (model.Availability < 0)
+            {
+                ModelState.AddModelError("Availability", "Наличността не може да е отрицателно число.");
+            }
+
             if (ModelState.IsValid)
             {
                 string uniqueFileName = UploadFile(model.Image);
@@ -339,6 +347,7 @@ namespace ThermoComfortNew.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, EditProductViewModel model)
         {
 
@@ -380,6 +389,7 @@ namespace ThermoComfortNew.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -401,6 +411,7 @@ namespace ThermoComfortNew.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var product = await _context.Products.FindAsync(id);
