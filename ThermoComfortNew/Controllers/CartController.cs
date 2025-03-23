@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +22,7 @@ public class CartController : Controller
         _userManager = userManager;
     }
 
+    // Показване на всички продукти в количката на текущия потребител
     [Authorize]
     public async Task<IActionResult> Index()
     {
@@ -35,6 +35,7 @@ public class CartController : Controller
         return View(cartItems);
     }
 
+    // Добавяне на продукт в количката
     [HttpPost]
     [Authorize]
     public async Task<IActionResult> AddToCart(int productId, int quantity = 1)
@@ -45,6 +46,7 @@ public class CartController : Controller
 
         if (cartItem == null)
         {
+            // Ако продуктът не е в количката, създаваме нов запис
             _context.ShoppingCartItems.Add(new ShoppingCartItem
             {
                 ApplicationUserId = user.Id,
@@ -54,6 +56,7 @@ public class CartController : Controller
         }
         else
         {
+            // Ако вече съществува, увеличаваме количеството
             cartItem.Quantity += quantity;
         }
 
@@ -61,6 +64,7 @@ public class CartController : Controller
         return RedirectToAction("Index");
     }
 
+    // Премахване на продукт от количката
     [HttpPost]
     [Authorize]
     public async Task<IActionResult> RemoveFromCart(int id)
@@ -74,6 +78,7 @@ public class CartController : Controller
         return RedirectToAction("Index");
     }
 
+    // Показване на страницата за финализиране на поръчката
     [HttpGet]
     [Authorize]
     public async Task<IActionResult> Checkout()
@@ -88,7 +93,7 @@ public class CartController : Controller
 
         if (!cartItems.Any())
         {
-            TempData["Message"] = "Your cart is empty.";
+            TempData["Message"] = "Вашата количка е празна.";
             return RedirectToAction("Index");
         }
 
@@ -101,6 +106,7 @@ public class CartController : Controller
         return View(viewModel);
     }
 
+    // Финализиране на поръчката
     [HttpPost]
     [Authorize]
     public async Task<IActionResult> Checkout(string address, string phoneNumber)
@@ -113,11 +119,11 @@ public class CartController : Controller
 
         if (!cartItems.Any())
         {
-            TempData["Error"] = "Вашата количка е празна."; // Your cart is empty.
+            TempData["Error"] = "Вашата количка е празна.";
             return RedirectToAction("Index");
         }
 
-        // Check stock for each product
+        // Проверка за наличност на продуктите
         foreach (var cartItem in cartItems)
         {
             if (cartItem.Product.Availability < cartItem.Quantity)
@@ -144,7 +150,7 @@ public class CartController : Controller
 
         _context.Orders.Add(order);
 
-        // Reduce product availability
+        // Намаляване на наличността на продуктите
         foreach (var cartItem in cartItems)
         {
             var product = await _context.Products.FindAsync(cartItem.ProductId);
@@ -154,14 +160,14 @@ public class CartController : Controller
             }
         }
 
-        _context.ShoppingCartItems.RemoveRange(cartItems); // Clear cart after checkout
+        _context.ShoppingCartItems.RemoveRange(cartItems); // Изчистване на количката след завършване на поръчката
         await _context.SaveChangesAsync();
 
-        TempData["Success"] = "Вашата поръчка е успешно направена!"; // Your order has been successfully placed.
+        TempData["Success"] = "Вашата поръчка е успешно направена!";
         return RedirectToAction("Index", "Orders");
     }
 
-
+    // Връща броя на продуктите в количката като JSON
     [HttpGet]
     public async Task<IActionResult> GetCartCount()
     {
@@ -177,9 +183,4 @@ public class CartController : Controller
 
         return Json(new { count = cartCount });
     }
-
-
-
 }
-
-

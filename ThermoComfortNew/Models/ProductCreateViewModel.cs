@@ -38,7 +38,7 @@ namespace ThermoComfortNew.Models
         [Display(Name = "Категория")]
         public int CategoryId { get; set; }
         [Display(Name = "Снимка")]
-        public IFormFile Image { get; set; } // For file uploads
+        public IFormFile Image { get; set; } // За добавяне на нови снимки
 
     }
 }

@@ -1,4 +1,4 @@
-﻿/* General Styles */
+﻿/* Общи стилове */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -19,18 +19,17 @@ a {
     margin: 0 auto;
 }
 
-
-/* Contact Form Section */
+/* Секция за контактната форма */
 .contact-form {
     padding: 50px 0;
-    background-color: #ecf0f1; /* Light gray */
+    background-color: #ecf0f1; /* Светло сиво */
 }
 
     .contact-form h2 {
         text-align: center;
         font-size: 2.5rem;
         margin-bottom: 20px;
-        color: #2c3e50; /* Dark blue-green */
+        color: #2c3e50; /* Тъмно синьо-зелено */
     }
 
     .contact-form p {
@@ -55,7 +54,7 @@ a {
             display: block;
             font-size: 1rem;
             margin-bottom: 5px;
-            color: #2c3e50; /* Dark blue-green */
+            color: #2c3e50; /* Тъмно синьо-зелено */
         }
 
         .contact-form .form-group input,
@@ -70,12 +69,12 @@ a {
 
             .contact-form .form-group input:focus,
             .contact-form .form-group textarea:focus {
-                border-color: #27ae60; /* Bright green */
+                border-color: #27ae60; /* Ярко зелено */
                 outline: none;
             }
 
     .contact-form .btn {
-        background-color: #27ae60; /* Bright green */
+        background-color: #27ae60; /* Ярко зелено */
         color: white;
         padding: 10px 20px;
         border: none;
@@ -86,12 +85,12 @@ a {
     }
 
         .contact-form .btn:hover {
-            background-color: #219653; /* Darker green */
+            background-color: #219653; /* По-тъмно зелено */
         }
 
-/* Footer */
+/* Footer (Долен колонтитул) */
 footer {
-    background-color: #2c3e50; /* Dark blue-green */
+    background-color: #2c3e50; /* Тъмно синьо-зелено */
     color: white;
     padding: 40px 0;
     text-align: center;
@@ -109,7 +108,7 @@ footer {
         }
 
             footer .social-links a:hover {
-                color: #27ae60; /* Bright green */
+                color: #27ae60; /* Ярко зелено */
             }
 
     footer p {

@@ -3,6 +3,7 @@
     max-width: 300px;
 }
 
+/* Ограничаване на височината на описанието и добавяне на многоточие при дълъг текст */
 .description-text {
     max-height: 4.5em;
     overflow: hidden;
@@ -12,11 +13,13 @@
     -webkit-box-orient: vertical;
 }
 
+/* Разширен изглед на описанието */
 .expanded {
     max-height: none !important;
     -webkit-line-clamp: unset !important;
 }
 
+/* Бутон за разширяване и свиване на текста */
 .toggle-button {
     background: none;
     border: none;
@@ -24,14 +27,17 @@
     cursor: pointer;
     padding: 0;
 }
+
+/* Контейнер за таблицата */
 .table-container {
     width: 100%;
-    overflow-x: auto; /* Prevents horizontal scrolling */
+    overflow-x: auto; /* Предотвратява хоризонталното скролиране */
 }
 
+/* Основни стилове за таблицата */
 .table {
     width: 100%;
-    table-layout: fixed; /* Ensures columns adjust properly */
+    table-layout: fixed; /* Осигурява правилно преоразмеряване на колоните */
     border-collapse: collapse;
 }
 
@@ -44,49 +50,48 @@
         white-space: nowrap;
     }
 
-        /* Specific column width adjustments */
+        /* Специфични настройки за ширината на колоните */
         .table th:nth-child(1), .table td:nth-child(1) {
             width: 20%;
         }
-        /* Product Name */
+        /* Име на продукта */
         .table th:nth-child(2), .table td:nth-child(2) {
             width: 25%;
         }
-        /* Description */
+        /* Описание */
         .table th:nth-child(3), .table td:nth-child(3) {
             width: 10%;
         }
-        /* Image */
+        /* Изображение */
         .table th:nth-child(4), .table td:nth-child(4) {
             width: 10%;
         }
-        /* Price */
+        /* Цена */
         .table th:nth-child(5), .table td:nth-child(5) {
             width: 10%;
         }
-        /* Availability */
+        /* Наличност */
         .table th:nth-child(6), .table td:nth-child(6) {
             width: 10%;
         }
-        /* Characteristics */
+        /* Характеристики */
         .table th:nth-child(7), .table td:nth-child(7) {
             width: 10%;
         }
-        /* Brand */
+        /* Марка */
         .table th:nth-child(8), .table td:nth-child(8) {
             width: 10%;
         }
-        /* Created On */
+        /* Дата на създаване */
         .table th:nth-child(9), .table td:nth-child(9) {
             width: 5%;
         }
-        /* IsDeleted */
+        /* Изтрито (IsDeleted) */
         .table th:nth-child(10), .table td:nth-child(10) {
             width: 10%;
         }
-/* Category */
 
-/* Allow multi-line wrapping for descriptions */
+/* Позволяване на многоредово пренасяне за описанията */
 .description-container {
     max-width: 100%;
     overflow: hidden;
@@ -106,6 +111,7 @@
         white-space: normal;
     }
 
+/* Бутон за управление на описанието */
 .toggle-button {
     background: none;
     border: none;
@@ -114,7 +120,7 @@
     font-size: 12px;
 }
 
-/* Styling for CRUD buttons */
+/* Стилове за бутоните за CRUD операции */
 .action-buttons {
     display: flex;
     gap: 5px;
@@ -128,15 +134,20 @@
         border-radius: 4px;
     }
 
+/* Бутон за редактиране */
 .edit-btn {
     background-color: #4CAF50;
 }
-/* Green */
+/* Зелен цвят */
+
+/* Бутон за детайли */
 .details-btn {
     background-color: #2196F3;
 }
-/* Blue */
+/* Син цвят */
+
+/* Бутон за изтриване */
 .delete-btn {
     background-color: #f44336;
 }
-/* Red */
+/* Червен цвят */

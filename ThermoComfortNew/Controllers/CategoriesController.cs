@@ -11,7 +11,7 @@ using ThermoComfortNew.Domain;
 
 namespace ThermoComfortNew.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")] // Ограничаваме достъпа до този контролер само за администратори
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,10 +20,11 @@ namespace ThermoComfortNew.Controllers
         {
             _context = context;
         }
-        
+
         // GET: Categories
         public async Task<IActionResult> Index()
         {
+            // Връща списък с всички категории
             return View(await _context.Categories.ToListAsync());
         }
 
@@ -32,14 +33,14 @@ namespace ThermoComfortNew.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return NotFound(); // Проверяваме дали е подаден валиден ID
             }
 
             var category = await _context.Categories
                 .FirstOrDefaultAsync(m => m.CategoryID == id);
             if (category == null)
             {
-                return NotFound();
+                return NotFound(); // Проверяваме дали категорията съществува
             }
 
             return View(category);
@@ -48,20 +49,18 @@ namespace ThermoComfortNew.Controllers
         // GET: Categories/Create
         public IActionResult Create()
         {
-            return View();
+            return View(); // Зарежда формата за създаване на нова категория
         }
 
         // POST: Categories/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] // Защита срещу CSRF атаки
         public async Task<IActionResult> Create([Bind("CategoryName,Description")] Category category)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) // Проверяваме дали данните са валидни
             {
                 _context.Add(category);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(); // Записваме новата категория в базата
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
@@ -84,47 +83,13 @@ namespace ThermoComfortNew.Controllers
             return View(category);
         }
 
-        // POST: Categories/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("CategoryName,Description")] Category category)
-        //{
-        //    if (id != category.CategoryID)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(category);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!CategoryExists(category.CategoryID))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(category);
-        //}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CategoryID,CategoryName,Description")] Category category)
         {
             if (id != category.CategoryID)
             {
-                return NotFound(); // If ID mismatch, return 404
+                return NotFound(); // Проверка дали ID-то съвпада
             }
 
             if (ModelState.IsValid)
@@ -132,13 +97,13 @@ namespace ThermoComfortNew.Controllers
                 try
                 {
                     _context.Update(category);
-                    await _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync(); // Запазваме редактираната категория
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!CategoryExists(category.CategoryID))
                     {
-                        return NotFound();
+                        return NotFound(); // Ако категорията не съществува, връщаме грешка
                     }
                     else
                     {
@@ -179,13 +144,13 @@ namespace ThermoComfortNew.Controllers
                 _context.Categories.Remove(category);
             }
 
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(); // Изтриваме категорията от базата
             return RedirectToAction(nameof(Index));
         }
 
         private bool CategoryExists(int id)
         {
-            return _context.Categories.Any(e => e.CategoryID == id);
+            return _context.Categories.Any(e => e.CategoryID == id); // Проверка дали категорията съществува
         }
     }
 }

@@ -2,7 +2,7 @@
 @model IEnumerable<ThermoComfort.Data.Models.Product>
 
 @{
-    ViewData["Title"] = "All Products";
+    ViewData["Title"] = "Всички продукти";
 }
 
 <h2 class="text-center">Всички продукти</h2>
@@ -34,7 +34,7 @@
     </div>
 </form>
 
-<!-- Sorting Links -->
+<!-- Сортиране -->
 <div class="mb-3 text-center">
     <a asp-action="All" asp-route-sortOrder="price_asc" class="btn btn-outline-secondary">Сортирай по цена ↑</a>
     <a asp-action="All" asp-route-sortOrder="price_desc" class="btn btn-outline-secondary">Сортирай по цена ↓</a>

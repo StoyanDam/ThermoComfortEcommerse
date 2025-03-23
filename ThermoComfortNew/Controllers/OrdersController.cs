@@ -18,24 +18,24 @@ namespace ThermoComfortNew.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public OrdersController(ApplicationDbContext context,UserManager<ApplicationUser> userManager )
+        public OrdersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
 
         // GET: Orders
-        [Authorize]
+        [Authorize] // Само автентикирани потребители могат да виждат поръчките си
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
 
             IQueryable<Order> ordersQuery = _context.Orders
-                .Include(o => o.ApplicationUser); // Include user data
+                .Include(o => o.ApplicationUser); // Включване на данни за потребителя
 
             if (!User.IsInRole("Admin"))
             {
-                // Regular users see only their orders
+                // Обикновените потребители виждат само своите поръчки
                 ordersQuery = ordersQuery.Where(o => o.ApplicationUserId == user.Id);
             }
 
@@ -52,7 +52,7 @@ namespace ThermoComfortNew.Controllers
             }
 
             var order = await _context.Orders
-                .Include(o => o.ApplicationUser)
+                .Include(o => o.ApplicationUser) // Зареждане на информация за потребителя
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (order == null)
             {
@@ -70,16 +70,14 @@ namespace ThermoComfortNew.Controllers
         }
 
         // POST: Orders/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken] // Защита срещу CSRF атаки
         public async Task<IActionResult> Create([Bind("Id,ApplicationUserId,PhoneNumber,Address,TotalPrice,OrderDate,DeliveryDate")] Order order)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(order);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(); // Запазване на новата поръчка в базата
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", order.ApplicationUserId);
@@ -87,7 +85,7 @@ namespace ThermoComfortNew.Controllers
         }
 
         // GET: Orders/Edit/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")] // Само администратор може да редактира поръчките
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -96,7 +94,7 @@ namespace ThermoComfortNew.Controllers
             }
 
             var order = await _context.Orders
-                .Include(o => o.ApplicationUser) // Include user details
+                .Include(o => o.ApplicationUser) // Зареждане на информация за потребителя
                 .FirstOrDefaultAsync(o => o.Id == id);
 
             if (order == null)
@@ -104,7 +102,7 @@ namespace ThermoComfortNew.Controllers
                 return NotFound();
             }
 
-            // Populate the dropdown with full names
+            // Попълване на падащото меню с пълни имена на потребителите
             ViewBag.ApplicationUserId = new SelectList(
                 _context.Users.Select(u => new { u.Id, FullName = u.FirstName + " " + u.LastName }),
                 "Id",
@@ -115,13 +113,10 @@ namespace ThermoComfortNew.Controllers
             return View(order);
         }
 
-
         // POST: Orders/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")] // Само администратор може да редактира поръчките
         public async Task<IActionResult> Edit(int id, [Bind("Id,ApplicationUserId,PhoneNumber,Address,TotalPrice,OrderDate,DeliveryDate")] Order order)
         {
             if (id != order.Id)
@@ -134,7 +129,7 @@ namespace ThermoComfortNew.Controllers
                 try
                 {
                     _context.Update(order);
-                    await _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync(); // Запазване на промените в базата
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -154,7 +149,6 @@ namespace ThermoComfortNew.Controllers
         }
 
         // GET: Orders/Delete/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -175,7 +169,6 @@ namespace ThermoComfortNew.Controllers
 
         // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
-        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -185,13 +178,14 @@ namespace ThermoComfortNew.Controllers
                 _context.Orders.Remove(order);
             }
 
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync(); // Изтриване на поръчката от базата
             return RedirectToAction(nameof(Index));
         }
 
         private bool OrderExists(int id)
         {
-            return _context.Orders.Any(e => e.Id == id);
+            return _context.Orders.Any(e => e.Id == id); // Проверка дали поръчката съществува
         }
     }
 }
+   

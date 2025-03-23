@@ -1,5 +1,4 @@
-﻿
-/* General Styles */
+﻿/* Общи стилове */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -14,7 +13,7 @@ body {
     margin: auto;
 }
 
-/* Hero Section */
+/* Секция "Герой" (Hero Section) */
 .hero {
     background: url('hero-image.jpg') no-repeat center center/cover;
     height: 400px;
@@ -32,6 +31,7 @@ body {
     border-radius: 10px;
 }
 
+/* Стилове за бутоните */
 .btn {
     background-color: #ace1af;
     color: #2b7a2b;
@@ -46,7 +46,7 @@ body {
         background-color: #a0d6a0;
     }
 
-/* Features Section */
+/* Секция "Характеристики" (Features Section) */
 .features {
     text-align: center;
     padding: 40px 20px;
@@ -67,22 +67,25 @@ body {
     width: 250px;
 }
 
-/* Set a smaller height for the carousel */
+/* Определяне на по-малка височина за карусела */
 #carouselExample {
-    max-width: 1020px; /* Adjust width */
-    max-height: 510px; /* Adjust height */
-    margin: auto; /* Center it */
+    max-width: 1020px; /* Регулиране на ширината */
+    max-height: 510px; /* Регулиране на височината */
+    margin: auto; /* Центриране */
 }
 
     #carouselExample img {
-        height: 510px; /* Keep images within the max height */
-        object-fit: cover; /* Ensures images fit without distortion */
+        height: 510px; /* Поддържане на изображенията в зададената височина */
+        object-fit: cover; /* Гарантира, че изображенията се побират без изкривяване */
     }
+
+/* Стилове за надписите на карусела */
 .carousel-caption {
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background: rgba(0, 0, 0, 0.5); /* Полупрозрачен фон */
     color: white;
     padding: 10px;
     font-size: 16px;
     bottom: 5px;
     width: 100%;
     left: 0;
+}

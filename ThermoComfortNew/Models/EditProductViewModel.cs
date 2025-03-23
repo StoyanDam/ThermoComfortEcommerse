@@ -33,6 +33,6 @@ namespace ThermoComfortNew.Models
         [Display(Name = "Категория")]
         public int CategoryId { get; set; }
 
-        public string ImageUrl { get; set; }
+        public string ImageUrl { get; set; } //Пазим пътя на старата снимка
     }
 }

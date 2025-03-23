@@ -11,7 +11,6 @@ namespace ThermoComfortNew.Controllers
 {
     public class ApplicationUsersController : Controller
     {
-     
         private readonly ApplicationDbContext _context;
 
         public ApplicationUsersController(ApplicationDbContext context)
@@ -19,14 +18,14 @@ namespace ThermoComfortNew.Controllers
             _context = context;
         }
 
-        // GET: ApplicationUsers
+        // Извлича всички потребители от базата и ги подава към изгледа
         public async Task<IActionResult> All()
         {
             var users = await _context.Users.ToListAsync();
             return View(users);
         }
 
-        // GET: ApplicationUsers/Details/5
+        // Извлича детайлна информация за конкретен потребител
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -35,7 +34,7 @@ namespace ThermoComfortNew.Controllers
             }
 
             var user = await _context.Users
-                .Include(u => u.Orders)
+                .Include(u => u.Orders) // Зарежда и свързаните поръчки на потребителя
                 .FirstOrDefaultAsync(u => u.Id == id);
 
             if (user == null)
@@ -46,7 +45,7 @@ namespace ThermoComfortNew.Controllers
             return View(user);
         }
 
-        // GET: ApplicationUsers/Create
+        // Извежда формуляр за създаване на нов потребител (само за администратори)
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public IActionResult Create()
@@ -54,7 +53,7 @@ namespace ThermoComfortNew.Controllers
             return View();
         }
 
-        // POST: ApplicationUsers/Create
+        // Обработва заявката за създаване на нов потребител
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
@@ -69,7 +68,7 @@ namespace ThermoComfortNew.Controllers
             return View(user);
         }
 
-        // GET: ApplicationUsers/Edit/5
+        // Зарежда формуляра за редактиране на потребител по дадено ID (само за администратори)
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(string id)
@@ -87,6 +86,7 @@ namespace ThermoComfortNew.Controllers
             return View(user);
         }
 
+        // Обработва заявката за редактиране на потребител
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
@@ -101,20 +101,20 @@ namespace ThermoComfortNew.Controllers
             {
                 try
                 {
-                    // Check if the user exists in the database
+                    // Проверява дали потребителят съществува в базата
                     var existingUser = await _context.Users.FindAsync(id);
                     if (existingUser == null)
                     {
                         return NotFound();
                     }
 
-                    // Update the existing user's properties
+                    // Обновява данните на потребителя
                     existingUser.FirstName = user.FirstName;
                     existingUser.LastName = user.LastName;
                     existingUser.Email = user.Email;
                     existingUser.PhoneNumber = user.PhoneNumber;
 
-                    // Save changes
+                    // Запазва промените в базата данни
                     _context.Update(existingUser);
                     await _context.SaveChangesAsync();
                 }
@@ -134,7 +134,7 @@ namespace ThermoComfortNew.Controllers
             return View(user);
         }
 
-        // GET: ApplicationUsers/Delete/5
+        // Зарежда изгледа за потвърждаване на изтриване на потребител
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(string id)
@@ -144,9 +144,7 @@ namespace ThermoComfortNew.Controllers
                 return NotFound();
             }
 
-            var user = await _context.Users
-                .FirstOrDefaultAsync(u => u.Id == id);
-
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
             if (user == null)
             {
                 return NotFound();
@@ -155,7 +153,7 @@ namespace ThermoComfortNew.Controllers
             return View(user);
         }
 
-        // POST: ApplicationUsers/Delete/5
+        // Обработва заявката за изтриване на потребител
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
@@ -172,10 +170,10 @@ namespace ThermoComfortNew.Controllers
             return RedirectToAction(nameof(All));
         }
 
+        // Проверява дали потребителят съществува в базата
         private bool UserExists(string id)
         {
             return _context.Users.Any(e => e.Id == id);
         }
     }
 }
-

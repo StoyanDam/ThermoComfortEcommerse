@@ -7,12 +7,12 @@
 
 <div class="container mt-5">
     <div class="row">
-        <!-- Product Image -->
+
         <div class="col-md-5">
             <img src="@Url.Content("~/images/" + Model.ImageUrl)" alt="Product Image" class="img-fluid rounded">
         </div>
 
-        <!-- Product Details -->
+
         <div class="col-md-7">
             <div class="p-4 bg-white rounded shadow">
                 <h2 class="text-primary">@Model.ProductName</h2>
@@ -24,9 +24,9 @@
                 <p><strong>Марка:</strong> @Model.Brand</p>
                 <p><small class="text-muted">Създадено на: @Model.CreatedOn</small></p>
 
-                <!-- Buttons -->
+     
                 <div class="d-flex gap-3 mt-3">
-                    <a asp-action="Index" class="btn btn-outline-primary">Назад</a>
+                    <a asp-action="All" class="btn btn-outline-primary">Назад</a>
 
                     @if (User.IsInRole("Admin"))
                     {
