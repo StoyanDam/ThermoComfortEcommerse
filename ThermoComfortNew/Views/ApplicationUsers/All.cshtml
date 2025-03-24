@@ -38,12 +38,16 @@
                                     <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-secondary btn-sm text-white">
                                         <i class="fas fa-edit"></i> Редактирай
                                     </a>
-                                    <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger btn-sm">
-                                        <i class="fas fa-trash-alt"></i> Изтрий
-                                    </a>
+                                    @if (user.Id != ViewBag.CurrentUserId)
+                                    {
+                                        <a asp-action="Delete" asp-route-id="@user.Id" class="btn btn-danger btn-sm">
+                                            <i class="fas fa-trash-alt"></i> Изтрий
+                                        </a>
+                                    }
                                 </td>
                             </tr>
                         }
+
                     </tbody>
                 </table>
             </div>

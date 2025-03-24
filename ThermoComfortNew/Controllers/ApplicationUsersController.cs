@@ -6,24 +6,35 @@ using System.Security.Claims;
 using ThermoComfort.Data.Models;
 using ThermoComfortNew.Data;
 using ThermoComfortNew.Domain;
+using ThermoComfortNew.ViewModels;
 
 namespace ThermoComfortNew.Controllers
 {
     public class ApplicationUsersController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ApplicationDbContext _context;
 
-        public ApplicationUsersController(ApplicationDbContext context)
+        public ApplicationUsersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+
+        private string NormalizeUsername(string firstName)
+        {
+            return firstName.ToLower().Replace(" ", ""); // Метод за нормализиране на потребителското име
+        }
+
 
         // Извлича всички потребители от базата и ги подава към изгледа
         public async Task<IActionResult> All()
         {
             var users = await _context.Users.ToListAsync();
+            ViewBag.CurrentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Взима ID на админа
             return View(users);
         }
+
 
         // Извлича детайлна информация за конкретен потребител
         public async Task<IActionResult> Details(string id)
@@ -53,20 +64,51 @@ namespace ThermoComfortNew.Controllers
             return View();
         }
 
+
         // Обработва заявката за създаване на нов потребител
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("FirstName,LastName,Email,PhoneNumber")] ApplicationUser user)
+        public async Task<IActionResult> Create(ApplicationUserCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(user);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(All));
+                var username = NormalizeUsername(model.FirstName);
+
+                // Check if the username already exists
+                var existingUser = await _userManager.FindByNameAsync(username);
+                if (existingUser != null)
+                {
+                    ModelState.AddModelError("FirstName", "Това име вече е заето.");
+                    return View(model);
+                }
+
+                var user = new ApplicationUser
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.Email,
+                    UserName = username, // Използваме собственото име за потребителско име
+                    PhoneNumber = model.PhoneNumber
+                };
+
+                var result = await _userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction(nameof(All));
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
             }
-            return View(user);
+
+            return View(model);
         }
+
+
 
         // Зарежда формуляра за редактиране на потребител по дадено ID (само за администратори)
         [HttpGet]
@@ -150,8 +192,11 @@ namespace ThermoComfortNew.Controllers
                 return NotFound();
             }
 
+            ViewBag.CurrentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Взима ID на админа
+
             return View(user);
         }
+
 
         // Обработва заявката за изтриване на потребител
         [HttpPost, ActionName("Delete")]

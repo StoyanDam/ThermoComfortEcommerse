@@ -46,14 +46,18 @@
                 <input type="hidden" asp-for="Id" />
 
                 <div class="d-flex justify-content-end">
-                    <button type="submit" class="btn btn-danger me-2">
-                        <i class="fas fa-trash-alt"></i> Изтрий
-                    </button>
+                    @if (Model.Id != ViewBag.CurrentUserId)
+                    {
+                        <button type="submit" class="btn btn-danger me-2">
+                            <i class="fas fa-trash-alt"></i> Изтрий
+                        </button>
+                    }
                     <a asp-action="All" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> Назад към списъка
                     </a>
                 </div>
             </form>
+
         </div>
     </div>
 </div>
