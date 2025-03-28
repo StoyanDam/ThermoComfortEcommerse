@@ -6,11 +6,11 @@ namespace ThermoComfortNew.Models
     {
         public int ProductId { get; set; }
 
-        [Required, StringLength(60)]
+        [Required(ErrorMessage = "Името е задължително"), StringLength(60)]
         [Display(Name = "Име на продукта")]
         public string ProductName { get; set; }
 
-        [Required, StringLength(1100)]
+        [Required(ErrorMessage = "Описанието е задължително."), StringLength(1100)]
         [Display(Name = "Описание")]
         public string Description { get; set; }
 

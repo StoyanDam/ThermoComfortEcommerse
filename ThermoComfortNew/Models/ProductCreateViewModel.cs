@@ -8,7 +8,7 @@ namespace ThermoComfortNew.Models
       
         public int ProductId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Името е задължително.")]
         [StringLength(60)]
         [Display(Name = "Име на продукта")]
         public string ProductName { get; set; }
@@ -34,7 +34,7 @@ namespace ThermoComfortNew.Models
         [Display(Name = "Създаден на дата")]
         public DateTime CreatedOn { get; set; } = DateTime.Now;
 
-        [Required]
+        [Required(ErrorMessage = "Категорията е задължителна.")]
         [Display(Name = "Категория")]
         public int CategoryId { get; set; }
         [Display(Name = "Снимка")]
