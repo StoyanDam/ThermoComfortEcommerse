@@ -53,8 +53,8 @@ namespace ThermoComfortNew.Roles
                     PhoneNumber = "0886688228"
                 };
 
-                //потребител с парола "password"
-                var result = userManager.CreateAsync(user, "password").Result;
+                //потребител с парола "tc4321"
+                var result = userManager.CreateAsync(user, "tc4321").Result;
 
                 if (result.Succeeded)
                 {

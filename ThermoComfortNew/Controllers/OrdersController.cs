@@ -85,68 +85,57 @@ namespace ThermoComfortNew.Controllers
         }
 
         // GET: Orders/Edit/5
+        [HttpGet]
         [Authorize(Roles = "Admin")] // Само администратор може да редактира поръчките
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var order = await _context.Orders
-                .Include(o => o.ApplicationUser) // Зареждане на информация за потребителя
+                .Include(o => o.ApplicationUser)
                 .FirstOrDefaultAsync(o => o.Id == id);
 
             if (order == null)
-            {
                 return NotFound();
-            }
-
-            // Попълване на падащото меню с пълни имена на потребителите
-            ViewBag.ApplicationUserId = new SelectList(
-                _context.Users.Select(u => new { u.Id, FullName = u.FirstName + " " + u.LastName }),
-                "Id",
-                "FullName",
-                order.ApplicationUserId
-            );
 
             return View(order);
         }
 
-        // POST: Orders/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")] // Само администратор може да редактира поръчките
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ApplicationUserId,PhoneNumber,Address,TotalPrice,OrderDate,DeliveryDate")] Order order)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id != order.Id)
-            {
-                return NotFound();
-            }
+            var orderToUpdate = await _context.Orders
+                .Include(o => o.ApplicationUser)
+                .FirstOrDefaultAsync(o => o.Id == id);
 
-            if (ModelState.IsValid)
+            if (orderToUpdate == null)
+                return NotFound();
+
+            bool updated = await TryUpdateModelAsync(orderToUpdate, "",
+                o => o.PhoneNumber,
+                o => o.Address,
+                o => o.TotalPrice,
+                o => o.OrderDate);
+
+            if (updated)
             {
                 try
                 {
-                    _context.Update(order);
-                    await _context.SaveChangesAsync(); // Запазване на промените в базата
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateException)
                 {
-                    if (!OrderExists(order.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    ModelState.AddModelError("", "Грешка при запис на промените.");
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["ApplicationUserId"] = new SelectList(_context.ApplicationUsers, "Id", "Id", order.ApplicationUserId);
-            return View(order);
+
+            return View(orderToUpdate);
         }
+      
 
         // GET: Orders/Delete/5
         public async Task<IActionResult> Delete(int? id)
