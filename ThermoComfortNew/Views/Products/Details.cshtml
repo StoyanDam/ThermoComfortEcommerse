@@ -26,13 +26,11 @@
 
      
                 <div class="d-flex gap-3 mt-3">
-             
-                    <a asp-action="All" class="btn btn-outline-primary">Назад към всички продукти</a>
+                    <a asp-action="Index" class="btn btn-outline-primary">Назад</a>
+
                     @if (User.IsInRole("Admin"))
                     {
                         <a asp-action="Edit" asp-route-id="@Model.ProductId" class="btn btn-secondary">Редактиране</a>
-                        <a asp-action="Index" class="btn btn-outline-primary">Назад към страницата за действия</a>
-
                     }
                 </div>
             </div>
