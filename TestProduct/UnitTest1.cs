@@ -43,7 +43,7 @@ public class ProductTests
         // Arrange
         var product = new Product
         {
-            ProductName = new string('A', 61) // Exceeding the 60-char limit
+            ProductName = new string('A', 61) // Надхвърля лимита от 60 символа
         };
 
         var context = new ValidationContext(product);
@@ -54,6 +54,6 @@ public class ProductTests
 
         // Assert
         Assert.False(isValid);
-        Assert.IsTrue(results.Exists(r => r.ErrorMessage.Contains("The field Име на продукта must be a string with a maximum length of 60")));
+        Assert.IsTrue(results.Exists(r => r.ErrorMessage.Contains("Полето: Име на продукта трябва да е текстов низ с максимална дължина от 60 символа")));
     }
 }

@@ -11,6 +11,7 @@ namespace ThermoComfortNew.Domain
         {
             Orders = new List<Order>();
         }
+
         [Required(ErrorMessage = "Името е задължително.")]
         [StringLength(50, ErrorMessage = "Името не може да надвишава 50 символа.")]
         public string FirstName { get; set; }
