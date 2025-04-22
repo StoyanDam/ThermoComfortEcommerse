@@ -63,6 +63,19 @@ namespace ThermoComfortNew.Roles
                 }
 
             }
+            if (userManager.FindByNameAsync("Tester").Result==null)
+            {
+                var user = new ApplicationUser
+                {
+                    UserName = "Tester",
+                    FirstName = "Tester",
+                    LastName = "Testing",
+                    Email = "test@gmail.com",
+                    PhoneNumber = "0887872121"
+                };
+                var result = userManager.CreateAsync(user, "654321").Result;
+
+            }
 
         }
     }
