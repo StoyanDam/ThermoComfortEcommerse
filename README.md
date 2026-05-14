@@ -1,8 +1,10 @@
-<img width="1901" height="908" alt="image" src="https://github.com/user-attachments/assets/1e8e63dd-593f-4b1b-9ac5-3c76f4fc1de1" /># ThermoComfort - E-Commerce Web Application 🛒
+Application 🛒
 
 ThermoComfort is a full-stack e-commerce platform dedicated to residential heating solutions, such as heat pumps, air conditioners, and pellet stoves. This project was developed as a graduation thesis for a professional qualification in "Applied Programming" at the High School of Mathematics "Konstantin Velichkov", Pazardzhik.
 
 The application is built using the MVC (Model-View-Controller) architecture, ensuring high performance, scalability, and a clean separation of concerns.
+## 📷 Screenshots
+<img width="1901" height="908" alt="image" src="https://github.com/user-attachments/assets/1e8e63dd-593f-4b1b-9ac5-3c76f4fc1de1" /># ThermoComfort - E-Commerce Web<img width="1893" height="911" alt="image" src="https://github.com/user-attachments/assets/9b7826b9-52b1-41be-9205-c49caafe609e" />
 
 ## 🚀 Key Features
 
